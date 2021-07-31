@@ -4,7 +4,6 @@
 	team name: POWER_OF_TWO
 
 	the player pushes a button to indicate their choice.
-	"ready" can be replaced with command != NONE, essentially.
 */
 
 module userInput
@@ -21,25 +20,16 @@ module userInput
 		if(turnIndicator)
 		begin
 			if(KEY[1] == 0)
-			begin
 			 	command = STAND;
-			 	ready = 1;
-	 		end
 			else if(KEY[0] == 0) 
-			begin
 				command = HIT;
-				ready = 1;
-			end
 			else
 				command = NONE;
-				ready = 0;
 		end
 		else 
-		begin
 			command = NONE;
-			ready = 0;
-		end
-
 	end
+
+	assign ready = (turnindicator && !(KEY == 3));//my turn and I pressed a button
 
 endmodule
