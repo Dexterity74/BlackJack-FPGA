@@ -17,7 +17,6 @@ module dealerAI
 		output 	blackjack::gameCommand 	command
 	);
 
-	//TODO more complex logic
 	always_comb
 	begin
 		if(turnIndicator)
