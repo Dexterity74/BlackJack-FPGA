@@ -4,6 +4,7 @@
 	team name: POWER_OF_TWO
 
 	the player pushes a button to indicate their choice.
+	"ready" can be replaced with command != NONE, essentially.
 */
 
 module userInput
@@ -35,8 +36,8 @@ module userInput
 		end
 		else 
 		begin
-			ready = 0;
 			command = NONE;
+			ready = 0;
 		end
 
 	end
