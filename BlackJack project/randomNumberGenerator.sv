@@ -3,7 +3,7 @@
 	created: 07/30/21
 	team name: POWER_OF_TWO
 
-	value behaves like a register
+	assert request high to get a new random value
 */
 
 module randomNumberGenerator
