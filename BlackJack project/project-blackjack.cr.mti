@@ -8,13 +8,31 @@ Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
 Top level modules:
 	blackjack_wrapper
 
-} {} {}} {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/dealerAI.sv} {1 {vlog -work work -sv -stats=none {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/dealerAI.sv}
+} {} {}} {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/hand.sv} {1 {vlog -work work -sv -stats=none {D:\School Stuff\2021 Summer\CpE200\cpe200-project\BlackJack project\hand.sv}
 Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
+-- Compiling package blackjack
+
+Top level modules:
+	--none--
 
 } {} {}} {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/userInput.sv} {1 {vlog -work work -sv -stats=none {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/userInput.sv}
 Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
 
+} {} {}} {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/counter.sv} {1 {vlog -work work -sv -stats=none {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/counter.sv}
+Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
+-- Compiling module counter
+
+Top level modules:
+	counter
+
 } {} {}} {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/blackjackGame.sv} {1 {vlog -work work -sv -stats=none {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/blackjackGame.sv}
 Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
+
+} {} {}} {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/gameCommand.sv} {1 {vlog -work work -sv -stats=none {D:\School Stuff\2021 Summer\CpE200\cpe200-project\BlackJack project\gameCommand.sv}
+Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
+-- Compiling package blackjack
+
+Top level modules:
+	--none--
 
 } {} {}}
