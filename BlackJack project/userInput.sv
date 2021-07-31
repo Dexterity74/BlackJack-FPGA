@@ -4,6 +4,8 @@
 	team name: POWER_OF_TWO
 
 	the player pushes a button to indicate their choice.
+
+	note that KEYS are high when not pushed and low when they are pushed.
 */
 
 module userInput
