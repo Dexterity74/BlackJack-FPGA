@@ -27,9 +27,6 @@ Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
 Top level modules:
 	counter
 
-} {} {}} {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/blackjackGame.sv} {1 {vlog -work work -sv -stats=none {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/blackjackGame.sv}
-Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
-
 } {} {}} {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/gameCommand.sv} {1 {vlog -work work -sv -stats=none {D:\School Stuff\2021 Summer\CpE200\cpe200-project\BlackJack project\gameCommand.sv}
 Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
 -- Compiling package blackjack
