@@ -12,9 +12,9 @@
 module dealerAI
 	(
 		input 	logic			turnIndicator,
-		input	logic	[4 : 0] handValue,
+		input	hand 			handValue,
 
-		output 	blackjack::gameCommand 	command
+		output 	gameCommand 	command
 	);
 
 	always_comb
