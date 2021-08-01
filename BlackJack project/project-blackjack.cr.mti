@@ -1,42 +1,40 @@
-{D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/sevenSegmentDecoder.sv} {1 {vlog -work work -sv -stats=none {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/sevenSegmentDecoder.sv}
-Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
-
-} {} {}} {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/blackjack_wrapper.sv} {1 {vlog -work work -sv -stats=none {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/blackjack_wrapper.sv}
+{D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/blackjack_wrapper.sv} {1 {vlog -work work -sv -stats=none {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/blackjack_wrapper.sv}
 Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
 -- Compiling module blackjack_wrapper
 
 Top level modules:
 	blackjack_wrapper
 
-} {} {}} {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/userInput.sv} {0 {vlog -work work -sv -stats=none {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/userInput.sv}
+} {} {}} {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/sevenSegmentDecoder.sv} {1 {vlog -work work -sv -stats=none {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/sevenSegmentDecoder.sv}
 Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
--- Compiling module userInput
-** Error: D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/userInput.sv(16): near "command": syntax error, unexpected IDENTIFIER, expecting ')'
 
-} {4.0 5.0} {}} {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/dealerAI.sv} {0 {vlog -work work -sv -stats=none {D:\School Stuff\2021 Summer\CpE200\cpe200-project\BlackJack project\dealerAI.sv}
+} {} {}} {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/dealerAI.sv} {0 {vlog -work work -sv -stats=none {D:\School Stuff\2021 Summer\CpE200\cpe200-project\BlackJack project\dealerAI.sv}
 Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
--- Compiling module dealerAI
-** Error: D:\School Stuff\2021 Summer\CpE200\cpe200-project\BlackJack project\dealerAI.sv(15): near "handValue": syntax error, unexpected IDENTIFIER, expecting ')'
+** Error: D:\School Stuff\2021 Summer\CpE200\cpe200-project\BlackJack project\dealerAI.sv(19): near "command": syntax error, unexpected IDENTIFIER, expecting ')'
 
-} {4.0 5.0} {}} {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/hand.sv} {1 {vlog -work work -sv -stats=none {D:\School Stuff\2021 Summer\CpE200\cpe200-project\BlackJack project\hand.sv}
+} {3.0 4.0} {}} {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/userInput.sv} {0 {vlog -work work -sv -stats=none {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/userInput.sv}
 Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
--- Compiling package blackjack
+** Error: D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/userInput.sv(18): near "command": syntax error, unexpected IDENTIFIER, expecting ')'
 
-Top level modules:
-	--none--
-
-} {} {}} {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/blackjackGame.sv} {1 {vlog -work work -sv -stats=none {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/blackjackGame.sv}
+} {3.0 4.0} {}} {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/blackjackGame.sv} {1 {vlog -work work -sv -stats=none {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/blackjackGame.sv}
 Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
 -- Compiling module blackjackGame
 
 Top level modules:
 	blackjackGame
 
-} {} {}} {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/gameCommand.sv} {1 {vlog -work work -sv -stats=none {D:\School Stuff\2021 Summer\CpE200\cpe200-project\BlackJack project\gameCommand.sv}
+} {} {}} {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/counter.sv} {1 {vlog -work work -sv -stats=none {D:\School Stuff\2021 Summer\CpE200\cpe200-project\BlackJack project\counter.sv}
 Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
--- Compiling package blackjack
+-- Compiling module counter
 
 Top level modules:
-	--none--
+	counter
+
+} {} {}} {D:/School Stuff/2021 Summer/CpE200/cpe200-project/BlackJack project/randomNumberGenerator.sv} {1 {vlog -work work -sv -stats=none {D:\School Stuff\2021 Summer\CpE200\cpe200-project\BlackJack project\randomNumberGenerator.sv}
+Model Technology ModelSim ALTERA vlog 10.3c Compiler 2014.09 Sep 20 2014
+-- Compiling module randomNumberGenerator
+
+Top level modules:
+	randomNumberGenerator
 
 } {} {}}
