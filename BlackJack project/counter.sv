@@ -18,7 +18,7 @@ module counter
 	(
 		input	logic	clk,	//ticker
 		input	logic	reset,	//hi means reset
-		input	logic 	enable,	//hi means enabled
+		input	logic 	enabled,	//hi means enabled
 		input	logic	[WIDTH - 1 : 0]	top,
 
 		output	logic	hitTop, //asserted for one signal while 
