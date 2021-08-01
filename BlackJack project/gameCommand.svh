@@ -5,6 +5,6 @@
 */
 
 //custom signal type
-package blackjack;
+//package blackjack;
 typedef enum logic [2:0] {NONE, HIT, STAND, DOUBLE} gameCommand;
-endpackage
+//endpackage
