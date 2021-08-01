@@ -7,6 +7,7 @@
 
 	note that KEYS are high when not pushed and low when they are pushed.
 */
+`include "gameCommand.svh"
 
 module userInput
 	(
@@ -21,17 +22,13 @@ module userInput
 	begin
 		if(turnIndicator)
 		begin
-			if(KEY[1] == 0)
-			 	command = STAND;
-			else if(KEY[0] == 0) 
-				command = HIT;
-			else
-				command = NONE;
+			if(KEY[1] == 0) command = STAND;
+			else if(KEY[0] == 0) command = HIT;
+			else command = NONE;
 		end
-		else 
-			command = NONE;
+		else command = NONE;
 	end
 
-	assign ready = (turnindicator && !(KEY == 3));//my turn and I pressed a button
+	assign ready = (turnIndicator && !(KEY == 3));//my turn and I pressed a button
 
 endmodule

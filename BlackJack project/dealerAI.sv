@@ -9,6 +9,9 @@
 
 */
 
+`include "hand.svh"
+`include "gameCommand.svh"
+
 module dealerAI
 	(
 		input 	logic			turnIndicator,
@@ -22,7 +25,7 @@ module dealerAI
 		if(turnIndicator)
 		begin	
 			if(handValue < 17) command = HIT;
-			else if command = STAND;
+			else command = STAND;
 		end
 		else command = NONE;
 		
