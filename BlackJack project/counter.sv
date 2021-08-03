@@ -14,7 +14,7 @@
 */
 
 module counter
-	#(parameter WIDTH = 16)
+	#(parameter WIDTH = 16, parameter INCREMENT = 1)
 	(
 		input	logic	clk,	//ticker
 		input	logic	reset,	//hi means reset
@@ -22,7 +22,7 @@ module counter
 		input	logic	[WIDTH - 1 : 0]	top,
 
 		output	logic	hitTop, //asserted for one signal while 
-		output	logic	[WIDTH - 1 : 0]	value
+		output	logic	[WIDTH - 1 : 0] value
 	);
 
 	logic _hitTop; //internal value for feedback
@@ -34,7 +34,7 @@ module counter
 			if(reset || _hitTop) 
 				value <= 0; 
 			else
-				value <= value + 1;//increment counter
+				value <= value + INCREMENT;//increment counter
 		end
 		else
 			value <= value;
