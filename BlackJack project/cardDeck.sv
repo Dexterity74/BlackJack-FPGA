@@ -24,14 +24,14 @@ module cardDeck
     card _rngValue;
 
     //modules
-    randomNumberGenerator #(3) rng(clk, requestCard, 'h12, _rngValue);
+    randomNumberGenerator #(4) rng(clk, requestCard, 'h12, _rngValue);
 
-    //logic
+    //determine card value from RNG
     always_comb
     begin
         if(requestCard)
         begin
-            case(card)
+            case(_rngValue)
                 'h10:       dealtCard = 'hA;//jack
                 'h11:       dealtCard = 'hA;//queen
                 'h12:       dealtCard = 'hA;//king
