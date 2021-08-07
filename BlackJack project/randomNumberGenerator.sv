@@ -16,14 +16,19 @@ module randomNumberGenerator
 		output 	logic	[WIDTH - 1 : 0] value
 	);
 
-	logic	[WIDTH - 1 : 0] counterValue;
-	counter #(WIDTH) counter (clk, 0, 1, max, 0, value);
+	logic hitTop; //dummy value
+	logic resetCounter;
+	logic enableCounter;
 
-	always_comb
+	assign enableCounter = 1;
+	assign resetCounter = 0;
+
+	logic	[WIDTH - 1 : 0] counterValue;
+	counter #(WIDTH, 1) counter (clk, resetCounter, enableCounter, 
+		max, hitTop, counterValue);
+
+	always @(posedge request)
 	begin
-		if(request)
-			value = counterValue;
-		else
-			value = value;
+		value = counterValue;
 	end
 endmodule
