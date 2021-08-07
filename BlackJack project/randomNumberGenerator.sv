@@ -11,7 +11,7 @@ module randomNumberGenerator
 	(
 		input 	logic	clk,
 		input	logic	request,
-		input 	logic	[Width - 1 : 0] max,
+		input 	logic	[WIDTH - 1 : 0] max,
 
 		output 	logic	[WIDTH - 1 : 0] value
 	);
