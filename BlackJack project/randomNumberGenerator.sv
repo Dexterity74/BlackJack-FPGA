@@ -27,7 +27,7 @@ module randomNumberGenerator
 	counter #(WIDTH, 1) counter (i_clk, resetCounter, enableCounter, 
 		i_max, hitTop, counterValue);
 
-	always @(posedge i_request)
+	always_ff @(posedge i_request)
 	begin
 		o_value = counterValue;
 	end
