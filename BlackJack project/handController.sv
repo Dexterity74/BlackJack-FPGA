@@ -11,6 +11,8 @@
 `include "card.svh"
 `include "hand.svh"
 
+`define MAX_CARDS 5
+
 module handController
     (
         input   logic   i_reset,
@@ -29,7 +31,7 @@ module handController
     initial begin
         cardIndex = 'b000;
         handSum = 0;
-        for(int i = 0; i < 5; ++i)
+        for(int i = 0; i < `MAX_CARDS; ++i)
         begin
             cardsInHand[i] = 5'b0;
         end
@@ -39,7 +41,7 @@ module handController
     begin
         if(i_reset)
         begin
-            for(int i = 0; i < 5; ++i)
+            for(int i = 0; i < `MAX_CARDS; ++i)
             begin
                 cardsInHand[i] = 5'b00000;
             end
