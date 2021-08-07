@@ -23,11 +23,11 @@ module userInput
 	begin
 		if(turnIndicator)
 		begin
-			if(KEY[1] == 0) command = STAND;
-			else if(KEY[0] == 0) command = HIT;
-			else command = NONE;
+			if(KEY[1] == 0) command = COMMAND_STAND;
+			else if(KEY[0] == 0) command = COMMAND_HIT;
+			else command = COMMAND_NONE;
 		end
-		else command = NONE;
+		else command = COMMAND_NONE;
 	end
 
 	assign ready = (turnIndicator && !(KEY == 3));//my turn and I pressed a button
