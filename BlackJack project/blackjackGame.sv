@@ -18,10 +18,10 @@ module blackjackGame
 		input 	logic			i_reset,
 		input 	logic [1 : 0]	i_keyInput,
 
-		output 	hand			o_playerHandSum,	//rigged
-		output 	hand 			o_dealerHandSum,	//rigged
+		output 	hand			o_playerHandSum,	
+		output 	hand 			o_dealerHandSum,	
 		output 	gameState		o_gameState,
-		output 	turnIndicator	o_whoseTurnIsItAnyway			 		
+		output 	turnIndicator	o_whoseTurnIsItAnyway		 		
 	);
 
 	//internal signals
@@ -86,5 +86,6 @@ struct
 	assign o_dealerHandSum = dealerHandSum;
 	assign o_playerHandSum = playerHandSum;
 	assign o_whoseTurnIsItAnyway = turnTracker;
+	assign o_gameState = gameState;
 
 endmodule
