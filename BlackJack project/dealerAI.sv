@@ -24,10 +24,10 @@ module dealerAI
 	begin
 		if(turnIndicator)
 		begin	
-			if(handValue < 17) command = HIT;
-			else command = STAND;
+			if(handValue < 17) command = COMMAND_HIT;
+			else command = COMMAND_STAND;
 		end
-		else command = NONE;
+		else command = COMMAND_NONE;
 		
 	end
 
