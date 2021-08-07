@@ -48,6 +48,9 @@
 `define SEGMENT_Z 6'h23;
 `define SEGMENT_OFF 6'h7F;
 
+//`define FLASH_GREEN 8'hFF;
+//`define FLASH_RED  18'h3FFFF;
+
 module outputController
 	(
 		//inputs
@@ -57,9 +60,8 @@ module outputController
 
 
 		//outputs - will depend on what we are hooking onto
-		output logic x, //some filler value.
-		output logic [17: 0]   redLights,
-		output logic [7: 0]    greenLights,
+		//output logic [17: 0]   redLights,
+		//output logic [7: 0]    greenLights,
 		output logic [6: 0]    hex7, 
 		output logic [6: 0]    hex6,
 		output logic [6: 0]    hex5,  
@@ -94,6 +96,9 @@ module outputController
 	logic [6:0] segmValue2;
 	logic [6:0] segmValue1;
 	logic [6:0] segmValue0;
+
+	//logic [17:0] redLightStatus;
+	//logic [7:0]  greenLightStatus;
 	
 	sevenSegmentDecoder segDisplayPlayer7(playerHand7, playerValue7);
 	sevenSegmentDecoder segDisplayPlayer6(playerHand6, playerValue6);
@@ -168,8 +173,8 @@ module outputController
 					segmLetter2 = `SEGMENT_W;
 					segmLetter1 = `SEGMENT_I;
 					segmLetter0 = `SEGMENT_N;
-				end
 
+				end
 		    else if(gameState == S_RESULT_LOSE)
 				begin
 					segmLetter3 = `SEGMENT_L;
@@ -208,6 +213,9 @@ module outputController
 	assign hex2 = segmValue2;
 	assign hex1 = segmValue1;
 	assign hex0 = segmValue0;
+
+	//assign redLights = redLightStatus
+	//assign greenLights = greenLightStatus
 	
 endmodule
 
