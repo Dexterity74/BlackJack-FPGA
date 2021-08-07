@@ -28,7 +28,7 @@ module handController
     hand handSum;
     logic [2:0] cardIndex;
 
-    initial begin
+    initial begin //or just pulse i_reset
         cardIndex = 'b000;
         handSum = 0;
         for(int i = 0; i < `MAX_CARDS; ++i)
