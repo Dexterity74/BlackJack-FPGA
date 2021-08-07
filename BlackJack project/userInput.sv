@@ -11,6 +11,7 @@
 
 module userInput
 	(
+		input	logic			clk,	//unused for now, but can be used to debounce buttons
 		input 	logic			turnIndicator,
 		input 	logic	[1 : 0]	KEY,
 
