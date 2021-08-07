@@ -4,7 +4,7 @@ module testbench_alphabet();
 	logic   [5:0] data;
 	logic   [6:0] segments;
 
-	alphabet dut(data, segments);
+	sevenSegmentDecoder dut(data, segments);
 
 	// tests segment output through all numbers/letters
 	initial 
