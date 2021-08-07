@@ -2,6 +2,37 @@
 	Authors: Justin Negron and Richard Osborn
 	created: 07/30/21
 	team name: POWER_OF_TWO
+
+TODO - 
+
+-------these 3 things are often needed/passed together
+---consider making a struct data type!
+--this might be superfluous. we can get by without it.
+struct handInfo
+    hand    handSum, //gorgeous
+    logic [2:0] numberOfCardsInHand,
+    card [4 : 0] cards_in_hand
+
+
+
+---State machine stuff
+-------next state
+------- outputs are already handled, so needs to affect internal signals
+(like whose turn it is)
+
+-----Dealer AI rigged
+
+-----output module rigged
+
+
+-----blackjack logic
+-----5-card charlie logic (needs states added to gameState.svh)
+-----bust logic
+-----only show 1 card for dealer until dealer's turn.
+
+
+------fix potential timing issue with drawing a card and adding it to hand at the same time
+--maybe we'll get lucky and it'll add the last card drawn and add a new card (same end result)
 */
 
 `include "card.svh"
@@ -18,6 +49,7 @@ module blackjackGame
 		input 	logic			i_reset,
 		input 	logic [1 : 0]	i_keyInput,
 
+		//TODO - output other hand info as well for more detailed readout (each card)
 		output 	hand			o_playerHandSum,	
 		output 	hand 			o_dealerHandSum,	
 		output 	gameState		o_gameState,
@@ -31,12 +63,6 @@ module blackjackGame
 	logic 	isDealersTurn;
 	logic 	playerInputReady;
 	
-/*TODO - 
-struct 
-    hand    o_handSum, //gorgeous
-    logic [2:0] o_numberOfCardsInHand,
-    card [4 : 0] o_cards_in_hand
-*/
 	//player hand info
 	hand			playerHandSum;
 	logic 	[2:0] 	playerCardCount;
@@ -55,7 +81,9 @@ struct
 	//fsm stuff
 	gameState gameState;
 
-	card 	nextCard;
+	card 	nextCard; //to be given to either player or dealer hands
+
+	//internal signal assignments
 	assign playerRequestDrawCard = (isPlayersTurn && playerCommand == COMMAND_HIT);
 	assign dealerRequestDrawCard = (isDealersTurn && dealerCommand == COMMAND_HIT);
 
