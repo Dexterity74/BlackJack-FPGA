@@ -43,6 +43,7 @@ module outputController
 	logic [4:0] segmLetter0;
 
 	logic [4:0] temp;
+	logic [4:0] temp2;
 
 	sevenSegmentDecoder segDisplayPlayer7(playerHand7, playerValue7);
 	sevenSegmentDecoder segDisplayPlayer6(playerHand6, playerValue6);
@@ -54,7 +55,7 @@ module outputController
 	sevenSegmentDecoder segDisplayMessage0(segmLetter0, segmValue0);
 
 	// always block for player
-	always
+	always @(playerHand)
 		begin
 			if(playerHand <= 5'd9)
 				begin
@@ -77,8 +78,8 @@ module outputController
 				end		
 		end
 	
-		// always block for dealer
-	always
+	// always block for dealer
+	always @(dealerHand)
 		begin
 			if(dealerHand <= 5'd9) 
 				begin
@@ -89,20 +90,20 @@ module outputController
 				begin
 					//make left 7-seg 1 and right 7-seg playerHand - 10
 					dealerHand5 = 5'd1;
-					temp = dealerHand - 5'd10;
-					dealerHand4 = temp;
+					temp2 = dealerHand - 5'd10;
+					dealerHand4 = temp2;
 				end
 			else
 				begin
 					//make left 7-seg 2 and right 7-seg playerHand - 20
 					dealerHand5 = 5'd2;	
-					temp = dealerHand - 5'd20;
-					dealerHand4 = dealerHand;	
+					temp2 = dealerHand - 5'd20;
+					dealerHand4 = temp2;	
 				end
 		end
 
 	// always block for message box
-	always 
+	always @(gameState)
 		begin
 			if(gameState == S_RESET)
 				begin
@@ -122,7 +123,6 @@ module outputController
 			//else
 
 		end
-	
 
 	//output logic
 
