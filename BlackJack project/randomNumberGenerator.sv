@@ -17,7 +17,7 @@ module randomNumberGenerator
 	);
 
 	logic	[WIDTH - 1 : 0] counterValue;
-	counter counter(clk, 0, 1, max, 0, value);
+	counter #(WIDTH) counter (clk, 0, 1, max, 0, value);
 
 	always_comb
 	begin
