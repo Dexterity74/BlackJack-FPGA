@@ -9,11 +9,11 @@
 module randomNumberGenerator
 	#(parameter WIDTH = 4)
 	(
-		input 	logic	clk,
-		input	logic	request,
-		input 	logic	[WIDTH - 1 : 0] max,
+		input 	logic	i_clk,
+		input	logic	i_request,
+		input 	logic	[WIDTH - 1 : 0] i_max,
 
-		output 	logic	[WIDTH - 1 : 0] value
+		output 	logic	[WIDTH - 1 : 0] o_value
 	);
 
 	logic hitTop; //dummy value
@@ -24,11 +24,11 @@ module randomNumberGenerator
 	assign resetCounter = 0;
 
 	logic	[WIDTH - 1 : 0] counterValue;
-	counter #(WIDTH, 1) counter (clk, resetCounter, enableCounter, 
-		max, hitTop, counterValue);
+	counter #(WIDTH, 1) counter (i_clk, resetCounter, enableCounter, 
+		i_max, hitTop, counterValue);
 
-	always @(posedge request)
+	always @(posedge i_request)
 	begin
-		value = counterValue;
+		o_value = counterValue;
 	end
 endmodule
