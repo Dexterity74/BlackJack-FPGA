@@ -12,6 +12,12 @@
 `include "hand.svh"
 
 `define MAX_CARDS 5
+/*TODO - 
+struct 
+    hand    o_handSum, //gorgeous
+    logic [2:0] o_numberOfCardsInHand,
+    card [4 : 0] o_cards_in_hand
+*/
 
 module handController
     (
