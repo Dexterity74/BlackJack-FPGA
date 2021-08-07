@@ -16,6 +16,7 @@ module outputController
 		input hand playerHand,
 		input gameState gameState,
 
+
 		//outputs - will depend on what we are hooking onto
 		output logic x //some filler value.
 		output logic [17: 0]   redLights,
@@ -29,6 +30,58 @@ module outputController
 		output logic [6: 0]    hex6,
 		output logic [6: 0]    hex7,   // hex7-6 is player_hand display
 	);
+
+	logic [4:0] leftDealerHand
+	logic [4:0] rightDealerHand 
+
+	logic [4:0] leftPlayerHand
+	logic [4:0] rightPlayerHand
+
+	sevenSegmentDecoder segDisplayDealer(dealerHand, dealerValue);
+
+	sevenSegmentDecoder segDisplayPlayer(playerHand, playerValue);
+
+	
+
+	always
+		begin
+			if(dealerHand <= 5'h9) 
+				
+			else if(dealerHand <= 5'h13)
+				//make left 7-seg 1 and right 7-seg playerHand - 10
+			else
+				//make left 7-seg 2 and right 7-seg playerHand - 20
+				
+		end
+
+	always
+		begin
+			if(playerHand <= 5'h9)
+				
+			else if(playerHand <= 5'h13)
+				//make left 7-seg 1 and right 7-seg playerHand - 10
+			else
+				//make left 7-seg 2 and right 7-seg playerHand - 20
+		end
+
+	//output logic
+
+
+	// players hand
+	assign hex7 = 
+	assign hex6 = 
+
+	// dealers hand
+	assign hex5 =
+	assign hex4 = 
+
+	// message screen
+	assign hex3 = 
+	assign hex2 =
+	assign hex1 = 
+	assign hex0 = 
+	
+	
 endmodule
 
 
