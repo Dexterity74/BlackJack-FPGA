@@ -6,7 +6,7 @@
 	state enum for blackjack game.
 */
 
-typedef enum [4:0] 
+typedef enum logic [4:0] 
 {
 	S_RESET, 
 	S_DEAL_DEALER, 
