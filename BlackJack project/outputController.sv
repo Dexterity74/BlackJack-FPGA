@@ -9,6 +9,7 @@
 `include "hand.svh"
 `include "gameState.svh"
 
+// make life visually easier
 `define SEGMENT_0 6'h0;
 `define SEGMENT_1 6'h1;
 `define SEGMENT_2 6'h2;
@@ -45,6 +46,7 @@
 `define SEGMENT_X 6'h21;
 `define SEGMENT_Y 6'h22;
 `define SEGMENT_Z 6'h23;
+`define SEGMENT_OFF 6'h7F;
 
 module outputController
 	(
@@ -160,14 +162,28 @@ module outputController
 					segmLetter1 = `SEGMENT_R;
 					segmLetter0 = `SEGMENT_T;
 				end
-			//else if(gameState == )
+			else if(gameState == S_RESULT_WIN)
+				begin
+					segmLetter3 = `SEGMENT_OFF;
+					segmLetter2 = `SEGMENT_W;
+					segmLetter1 = `SEGMENT_I;
+					segmLetter0 = `SEGMENT_N;
+				end
 
-			//else if(something else)
-
-			//else if(something else)
-
-			//else if(something else)
-
+		    else if(gameState == S_RESULT_LOSE)
+				begin
+					segmLetter3 = `SEGMENT_L;
+					segmLetter2 = `SEGMENT_O;
+					segmLetter1 = `SEGMENT_S;
+					segmLetter0 = `SEGMENT_E;
+				end
+			else if(gameState == S_RESULT_TIE)
+				begin
+					segmLetter3 = `SEGMENT_OFF;
+					segmLetter2 = `SEGMENT_T;
+					segmLetter1 = `SEGMENT_I;
+					segmLetter0 = `SEGMENT_E;
+				end
 			else
 				begin
 					segmLetter3 = `SEGMENT_P;
