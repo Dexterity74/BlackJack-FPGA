@@ -64,12 +64,12 @@ struct
 	assign isDealersTurn = (turnTracker == TURN_DEALER);
 
 	//hands full of cards
-	handController playerHand(i_reset, 
+	handController playerHandController(i_reset, 
 		playerRequestDrawCard,//TIMING ISSUE HERE! card is not ready yet. maybe wait one clock cycle.
 		nextCard, playerHandSum, playerCardCount, playerHand);
 		
 	//hands full of cards
-	handController dealerHand(i_reset, 
+	handController dealerHandController(i_reset, 
 		dealerRequestDrawCard,//TIMING ISSUE HERE! card is not ready yet. maybe wait one clock cycle.
 		nextCard, dealerHandSum, dealerCardCount, dealerHand);
 
