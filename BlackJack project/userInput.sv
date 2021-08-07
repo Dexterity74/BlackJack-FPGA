@@ -5,31 +5,31 @@
 
 	the player pushes a button to indicate their choice.
 
-	note that KEYS are high when not pushed and low when they are pushed.
+	note that i_KEYS are high when not pushed and low when they are pushed.
 */
 `include "gameCommand.svh"
 
 module userInput
 	(
-		input	logic			clk,	//unused for now, but can be used to debounce buttons
-		input 	logic			turnIndicator,
-		input 	logic	[1 : 0]	KEY,
+		input	logic			i_clk,	//unused for now, but can be used to debounce buttons
+		input 	logic			i_turnIndicator,
+		input 	logic	[1 : 0]	i_KEY,
 
-		output 	logic			ready,
-		output 	gameCommand 	command
+		output 	logic			o_ready,
+		output 	gameCommand 	o_command
 	);
 
 	always_comb
 	begin
-		if(turnIndicator)
+		if(i_turnIndicator)
 		begin
-			if(KEY[1] == 0) command = STAND;
-			else if(KEY[0] == 0) command = HIT;
-			else command = NONE;
+			if(i_KEY[1] == 0) o_command = COMMAND_STAND;
+			else if(i_KEY[0] == 0) o_command = COMMAND_HIT;
+			else o_command = COMMAND_NONE;
 		end
-		else command = NONE;
+		else o_command = COMMAND_NONE;
 	end
 
-	assign ready = (turnIndicator && !(KEY == 3));//my turn and I pressed a button
+	assign ready = (i_turnIndicator && !(i_KEY == 3));//my turn and I pressed a button
 
 endmodule

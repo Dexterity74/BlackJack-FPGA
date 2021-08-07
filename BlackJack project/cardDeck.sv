@@ -22,9 +22,11 @@ module cardDeck
     );
 
     card _rngValue;
+    logic [3:0] MAX_CARD_VALUE;
+    assign MAX_CARD_VALUE = 'h12;
 
     //modules
-    randomNumberGenerator #(4) rng(clk, requestCard, 'h12, _rngValue);
+    randomNumberGenerator #(4) rng(clk, requestCard, MAX_CARD_VALUE, _rngValue);
 
     //determine card value from RNG
     always_comb

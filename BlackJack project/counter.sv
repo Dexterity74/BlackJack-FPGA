@@ -16,32 +16,32 @@
 module counter
 	#(parameter WIDTH = 16, parameter INCREMENT = 1)
 	(
-		input	logic	clk,	//ticker
-		input	logic	reset,	//hi means reset
-		input	logic 	enabled,	//hi means enabled
-		input	logic	[WIDTH - 1 : 0]	top,
+		input	logic	i_clk,	//ticker
+		input	logic	i_reset,	//hi means reset
+		input	logic 	i_enabled,	//hi means enabled
+		input	logic	[WIDTH - 1 : 0]	i_top,
 
-		output	logic	hitTop, //asserted for one signal while 
-		output	logic	[WIDTH - 1 : 0] value
+		output	logic	o_hitTop, //asserted for one signal while 
+		output	logic	[WIDTH - 1 : 0] o_value
 	);
 
 	logic _hitTop; //internal value for feedback
 
-	always @ (posedge clk or posedge _hitTop) 
+	always @ (posedge i_clk or posedge _hitTop) 
 	begin
-		if(enabled)
+		if(i_enabled)
 		begin
-			if(reset || _hitTop) 
-				value <= 0; 
+			if(i_reset || _hitTop) 
+				o_value <= 0; 
 			else
-				value <= value + INCREMENT;//increment counter
+				o_value <= o_value + INCREMENT;//increment counter
 		end
 		else
-			value <= value;
+			o_value <= o_value;
 	end
 
-	assign _hitTop = (value == top);//internal value for feedback
+	assign _hitTop = (o_value == i_top);//internal value for feedback
 
-	assign hitTop = _hitTop; //internal value sent out.
+	assign o_hitTop = _hitTop; //internal value sent out.
 
 endmodule
