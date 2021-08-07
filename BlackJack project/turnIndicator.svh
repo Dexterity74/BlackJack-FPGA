@@ -10,4 +10,4 @@
 */
 
 //custom signal type
-typedef enum logic [2:0] {TURN_NONE, DEALER, PLAYER} turnIndicator;
+typedef enum logic [2:0] {TURN_NONE, TURN_DEALER, TURN_PLAYER} turnIndicator;
