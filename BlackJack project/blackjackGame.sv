@@ -59,6 +59,7 @@ module blackjackGame
 	logic 	isPlayersTurn;
 	logic 	playerRequestCardDraw;
 	logic 	dealerRequestCardDraw;
+	logic 	requestCardFromDeck; //dealer || player request
 	logic 	isDealersTurn;
 	logic 	playerInputReady;
 	
@@ -90,14 +91,16 @@ module blackjackGame
 	assign isPlayersTurn = (turnTracker == TURN_PLAYER);
 	assign isDealersTurn = (turnTracker == TURN_DEALER);
 
+	assign requestCardFromDeck = playerRequestDrawCard || dealerRequestDrawCard;
+
 	//hands full of cards
 	handController playerHandController(i_reset, 
-		playerRequestDrawCard,//TIMING ISSUE HERE! card is not ready yet. maybe wait one clock cycle.
+		playerRequestDrawCard,//possible TIMING ISSUE HERE! card is not ready yet. maybe wait one clock cycle.
 		nextCard, playerHandSum, playerCardCount, playerHand);
 		
 	//hands full of cards
 	handController dealerHandController(i_reset, 
-		dealerRequestDrawCard,//TIMING ISSUE HERE! card is not ready yet. maybe wait one clock cycle.
+		dealerRequestDrawCard,//possible TIMING ISSUE HERE! card is not ready yet. maybe wait one clock cycle.
 		nextCard, dealerHandSum, dealerCardCount, dealerHand);
 
 	//user input
@@ -108,7 +111,7 @@ module blackjackGame
 	dealerAI dealerAI(isDealersTurn, dealerHand, dealerCommand);
 
 	//card deck
-	cardDeck theDeck(i_clk, requestCardDraw, nextCard);
+	cardDeck theDeck(i_clk, requestCardFromDeck, nextCard);
 
 	//assign output signals
 	assign o_dealerHandSum = dealerHandSum;
