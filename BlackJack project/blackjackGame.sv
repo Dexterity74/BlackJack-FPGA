@@ -55,25 +55,25 @@ module blackjackGame
 	);
 
 	//internal signals
-	logic 	isPlayersTurn = 'b0;
-	logic 	playerRequestDrawCard = 'b0;
-	logic 	dealerRequestDrawCard = 'b0;
-	logic 	requestCardFromDeck = 'b0; //dealer || player request
-	logic 	isDealersTurn = 'b0;
-	logic 	playerInputReady = 'b0;
+	logic 	isPlayersTurn;
+	logic 	playerRequestDrawCard;
+	logic 	dealerRequestDrawCard;
+	logic 	requestCardFromDeck; //dealer || player request
+	logic 	isDealersTurn;
+	logic 	playerInputReady;
 
 	//---------hand results---------
 	//blackjack
-	logic 	dealerHasBlackjack = 'b0;
-	logic 	playerHasBlackjack = 'b0;
+	logic 	dealerHasBlackjack;
+	logic 	playerHasBlackjack;
 
 	//5-card charlie
-	logic 	dealerHasCharlie = 'b0;
-	logic 	playerHasCharlie = 'b0;
+	logic 	dealerHasCharlie;
+	logic 	playerHasCharlie;
 
 	//bust
-	logic 	dealerBusted = 'b0;
-	logic	playerBusted = 'b0;
+	logic 	dealerBusted;
+	logic	playerBusted;
 	
 	//---------Hand Info------------
 	//player hand info
@@ -139,11 +139,11 @@ module blackjackGame
 	cardDeck theDeck(i_clk, requestCardFromDeck, nextCard);
 
 	always_ff @(posedge i_clk, posedge i_reset)
-		if (i_reset) `gameState <= `S_RESET;
-		else         `gameState <= nextstate;
+		if (i_reset) gameState <= `S_RESET;
+		else         gameState <= nextstate;
 
 	always_comb 
-		case (`gameState)
+		case (gameState)
 			`S_RESET:             		                   					nextstate = `S_DEAL_DEALER;
 			`S_DEAL_DEALER:       if(dealerCardCount < 'd2) 				nextstate = `S_DEAL_DEALER;
 			                    	else 				   					nextstate = `S_CHECK_DEALER_BJ;
