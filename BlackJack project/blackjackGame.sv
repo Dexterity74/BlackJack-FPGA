@@ -20,14 +20,13 @@ struct handInfo
 ------- outputs are already handled, so needs to affect internal signals
 (like whose turn it is)
 
------Dealer AI rigged
-
 -----output module rigged
 
 
------blackjack logic
------5-card charlie logic (needs states added to gameState.svh)
------bust logic
+-----blackjack logic (consider blackjack detector module)
+-----5-card charlie logic (consider 5-cardcharlie detector module)
+		(needs states added to gameState.svh)
+-----bust logic (consider bust detector module)
 -----only show 1 card for dealer until dealer's turn.
 
 
@@ -106,6 +105,7 @@ module blackjackGame
 		playerInputReady, playerCommand);
 
 	//dealer ai
+	dealerAI dealerAI(isDealersTurn, dealerHand, dealerCommand);
 
 	//card deck
 	cardDeck theDeck(i_clk, requestCardDraw, nextCard);
