@@ -23,7 +23,7 @@ module cardDeck
 
     `card _rngValue;
     logic [3:0] MAX_CARD_VALUE;
-    assign MAX_CARD_VALUE = 'h12;
+    assign MAX_CARD_VALUE = 'd12;
 
     //modules
     randomNumberGenerator #(4) rng(clk, requestCard, MAX_CARD_VALUE, _rngValue);
@@ -34,9 +34,10 @@ module cardDeck
         if(requestCard)
         begin
             case(_rngValue)
-                'h10:       dealtCard = 'hA;//jack
-                'h11:       dealtCard = 'hA;//queen
-                'h12:       dealtCard = 'hA;//king
+                'd9:        dealtCard = 'd10;//10
+                'd10:       dealtCard = 'd10;//jack
+                'd11:       dealtCard = 'd10;//queen
+                'd12:       dealtCard = 'd10;//king
                 default:    dealtCard = _rngValue + 1; //all else
             endcase 
         end
