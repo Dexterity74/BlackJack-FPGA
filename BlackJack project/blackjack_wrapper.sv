@@ -28,7 +28,7 @@ module blackjack_wrapper
 							HEX7[0: 6]);
 
 	// Justin: I don't think switch 17 will be used for gameplay at all so
-			   it would make good for a reset switch
+	//		   it would make good for a reset switch
 
 	//all unused pins should be driven low (off)
 

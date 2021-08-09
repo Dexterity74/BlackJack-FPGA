@@ -97,18 +97,18 @@ module blackjackGame
 	`card 	nextCard; //to be given to either player or dealer hands
 
 	//internal signal assignments
-	assign playerRequestDrawCard = (isPlayersTurn && playerCommand == COMMAND_HIT);
-	assign dealerRequestDrawCard = (isDealersTurn && dealerCommand == COMMAND_HIT);
+	assign playerRequestDrawCard = (isPlayersTurn && playerCommand == `COMMAND_HIT);
+	assign dealerRequestDrawCard = (isDealersTurn && dealerCommand == `COMMAND_HIT);
 
 	//turn stuff
-	assign isPlayersTurn = (turnTracker == TURN_PLAYER);
-	assign isDealersTurn = (turnTracker == TURN_DEALER);
+	assign isPlayersTurn = (turnTracker == `TURN_PLAYER);
+	assign isDealersTurn = (turnTracker == `TURN_DEALER);
 
 	assign requestCardFromDeck = playerRequestDrawCard || dealerRequestDrawCard;
 
 	//bust detectors
-	assign dealerBusted = dealerHandSum > 21;
-	assign playerBusted = playerHandSum > 21;
+	assign dealerBusted = dealerHandSum > 'd21;
+	assign playerBusted = playerHandSum > 'd21;
 
 	//blackjack detectors
     assign dealerHasBlackjack = dealerCardCount == 'd2 && (dealerHandSum == 'd21);
@@ -139,7 +139,7 @@ module blackjackGame
 	cardDeck theDeck(i_clk, requestCardFromDeck, nextCard);
 
 	always_ff @(posedge i_clk, posedge i_reset)
-		if (i_reset) `gameState <= S_RESET;
+		if (i_reset) `gameState <= `S_RESET;
 		else         `gameState <= nextstate;
 
 	always_comb 
