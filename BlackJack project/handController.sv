@@ -27,7 +27,7 @@ module handController
 
         output  `hand           o_handSum, //gorgeous
         output  logic [2:0]     o_numberOfCardsInHand,
-        output  `card [4 : 0]   o_cards_in_hand
+        output  `card [4 : 0]   o_cardsInHand
     );
 
     `card [4: 0] cardsInHand;
