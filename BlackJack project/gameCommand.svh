@@ -8,10 +8,16 @@
 */
 
 //custom signal type
-typedef enum logic [2:0] 
-	{
-		COMMAND_NONE, 
-		COMMAND_HIT, 
-		COMMAND_STAND, 
-		COMMAND_DOUBLE
-	} gameCommand;
+`define gameCommand logic [2:0]
+`define COMMAND_NONE 'b000
+`define COMMAND_HIT 'b001
+`define COMMAND_STAND 'b010
+`define COMMAND_DOUBLE 'b011
+
+// typedef enum logic [2:0] 
+// 	{
+// 		COMMAND_NONE, 
+// 		COMMAND_HIT, 
+// 		COMMAND_STAND, 
+// 		COMMAND_DOUBLE
+// 	} gameCommand;

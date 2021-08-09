@@ -16,4 +16,5 @@
 
 */
 
-typedef logic [4 : 0] hand;
+`define hand logic [4:0]
+//typedef logic [4 : 0] hand;

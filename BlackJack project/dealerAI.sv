@@ -15,19 +15,19 @@
 module dealerAI
 	(
 		input 	logic			turnIndicator,
-		input	hand 			handValue,
+		input	`hand 			handValue,
 
-		output 	gameCommand 	command
+		output 	`gameCommand 	command
 	);
 
 	always_comb
 	begin
 		if(turnIndicator)
 		begin	
-			if(handValue < 17) command = COMMAND_HIT;
-			else command = COMMAND_STAND;
+			if(handValue < 17) command = `COMMAND_HIT;
+			else command = `COMMAND_STAND;
 		end
-		else command = COMMAND_NONE;
+		else command = `COMMAND_NONE;
 		
 	end
 

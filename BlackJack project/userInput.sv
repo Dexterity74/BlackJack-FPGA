@@ -16,18 +16,18 @@ module userInput
 		input 	logic	[1 : 0]	i_KEY,
 
 		output 	logic			o_ready,
-		output 	gameCommand 	o_command
+		output 	`gameCommand 	o_command
 	);
 
 	always_comb
 	begin
 		if(i_turnIndicator)
 		begin
-			if(i_KEY[1] == 0) o_command = COMMAND_STAND;
-			else if(i_KEY[0] == 0) o_command = COMMAND_HIT;
-			else o_command = COMMAND_NONE;
+			if(i_KEY[1] == 0) o_command = `COMMAND_STAND;
+			else if(i_KEY[0] == 0) o_command = `COMMAND_HIT;
+			else o_command = `COMMAND_NONE;
 		end
-		else o_command = COMMAND_NONE;
+		else o_command = `COMMAND_NONE;
 	end
 
 	assign ready = (i_turnIndicator && !(i_KEY == 3));//my turn and I pressed a button

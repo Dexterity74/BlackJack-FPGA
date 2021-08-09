@@ -18,10 +18,10 @@ module cardDeck
         input logic     clk,
         input logic     requestCard,
 
-        output card     dealtCard
+        output `card     dealtCard
     );
 
-    card _rngValue;
+    `card _rngValue;
     logic [3:0] MAX_CARD_VALUE;
     assign MAX_CARD_VALUE = 'h12;
 

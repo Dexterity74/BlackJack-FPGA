@@ -7,4 +7,5 @@
 */
 
 //custom signal type
-typedef logic [3:0] card;
+`define card logic [3:0]
+//typedef logic [3:0] card;

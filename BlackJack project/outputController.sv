@@ -54,9 +54,9 @@
 module outputController
 	(
 		//inputs
-		input hand      dealerHand,
-		input hand      playerHand,
-		input gameState gameState,
+		input `hand      dealerHand,
+		input `hand      playerHand,
+		input `gameState gameState,
 
 
 		//outputs - will depend on what we are hooking onto
@@ -160,14 +160,14 @@ module outputController
 	// always block for message box
 	always @(gameState)
 		begin
-			if(gameState == S_RESET)
+			if(gameState == `S_RESET)
 				begin
 					segmLetter3 = `SEGMENT_S;
 					segmLetter2 = `SEGMENT_T;
 					segmLetter1 = `SEGMENT_R;
 					segmLetter0 = `SEGMENT_T;
 				end
-			else if(gameState == S_RESULT_WIN)
+			else if(gameState == `S_RESULT_WIN)
 				begin
 					segmLetter3 = `SEGMENT_OFF;
 					segmLetter2 = `SEGMENT_W;
@@ -175,14 +175,14 @@ module outputController
 					segmLetter0 = `SEGMENT_N;
 
 				end
-		    else if(gameState == S_RESULT_LOSE)
+		    else if(gameState == `S_RESULT_LOSE)
 				begin
 					segmLetter3 = `SEGMENT_L;
 					segmLetter2 = `SEGMENT_O;
 					segmLetter1 = `SEGMENT_S;
 					segmLetter0 = `SEGMENT_E;
 				end
-			else if(gameState == S_RESULT_TIE)
+			else if(gameState == `S_RESULT_TIE)
 				begin
 					segmLetter3 = `SEGMENT_OFF;
 					segmLetter2 = `SEGMENT_T;
