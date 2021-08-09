@@ -22,6 +22,8 @@
 `define	S_RESULT_TIE	'b01100
 `define	S_RESULT_WIN	'b01101
 `define	S_RESULT_LOSE	'b01110
+`define S_CHECK_PLAYER_5CC 'b01111
+`define S_CHECK_DEALER_5CC 'b10000
 
 // typedef enum logic [4:0] 
 // {

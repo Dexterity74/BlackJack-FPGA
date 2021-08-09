@@ -3,11 +3,11 @@
 
 module enumTest_A
 	(
-		input gameState myGameState,
+		input `gameState myGameState,
 
 		output logic a
 	);
 
-	assign a = myGameState == S_RESET;
+	assign a = myGameState == `S_RESET;
 
 endmodule

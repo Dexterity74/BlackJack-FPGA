@@ -48,16 +48,16 @@ module blackjackGame
 		input 	logic [1 : 0]	i_keyInput,
 
 		//TODO - output other hand info as well for more detailed readout (each card)
-		output 	hand			o_playerHandSum,	
-		output 	hand 			o_dealerHandSum,	
-		output 	gameState		o_gameState,
-		output 	turnIndicator	o_whoseTurnIsItAnyway		 		
+		output 	`hand			o_playerHandSum,	
+		output 	`hand 			o_dealerHandSum,	
+		output 	`gameState		o_gameState,
+		output 	`turn			o_whoseTurnIsItAnyway		 		
 	);
 
 	//internal signals
 	logic 	isPlayersTurn = 'b0;
-	logic 	playerRequestCardDraw = 'b0;
-	logic 	dealerRequestCardDraw = 'b0;
+	logic 	playerRequestDrawCard = 'b0;
+	logic 	dealerRequestDrawCard = 'b0;
 	logic 	requestCardFromDeck = 'b0; //dealer || player request
 	logic 	isDealersTurn = 'b0;
 	logic 	playerInputReady = 'b0;
@@ -77,24 +77,24 @@ module blackjackGame
 	
 	//---------Hand Info------------
 	//player hand info
-	hand			playerHandSum;
+	`hand			playerHandSum;
 	logic 	[2:0] 	playerCardCount;
-	card 	[4:0] 	playerHand;
+	`card 	[4:0] 	playerHand;
 
 	//dealer hand info
-	hand			dealerHandSum;
+	`hand			dealerHandSum;
 	logic 	[2:0] 	dealerCardCount; 
-	card 	[4:0] 	dealerHand;
+	`card 	[4:0] 	dealerHand;
 
-	gameCommand		dealerCommand;
-	gameCommand		playerCommand;
+	`gameCommand		dealerCommand;
+	`gameCommand		playerCommand;
 
-	turnIndicator turnTracker;
+	`turn turnTracker;
 
 	//fsm stuff
-	gameState gameState, nextstate;
+	`gameState gameState, nextstate;
 
-	card 	nextCard; //to be given to either player or dealer hands
+	`card 	nextCard; //to be given to either player or dealer hands
 
 	//internal signal assignments
 	assign playerRequestDrawCard = (isPlayersTurn && playerCommand == COMMAND_HIT);
@@ -115,8 +115,8 @@ module blackjackGame
     assign playerHasBlackjack = playerCardCount == 'd2 && (playerHandSum == 'd21);
 	
 	//5-card charlie detectors
-    assign dealerHasBlackjack = dealerCardCount == 'd5 && (dealerHandSum <= 'd21);
-    assign playerHasBlackjack = playerCardCount == 'd5 && (playerHandSum <= 'd21);
+    assign dealerHasCharlie = dealerCardCount == 'd5 && (dealerHandSum <= 'd21);
+    assign playerHasCharlie = playerCardCount == 'd5 && (playerHandSum <= 'd21);
 
 	//hands full of cards
 	handController playerHandController(i_reset, 
@@ -139,16 +139,40 @@ module blackjackGame
 	cardDeck theDeck(i_clk, requestCardFromDeck, nextCard);
 
 	always_ff @(posedge i_clk, posedge i_reset)
-		if (i_reset) gameState <= S_RESET;
-		else         gameState <= nextstate;
+		if (i_reset) `gameState <= S_RESET;
+		else         `gameState <= nextstate;
 
 	always_comb 
-		case (gameState)
-			S_RESET:                                     nextstate = S_DEAL_DEALER;
-			S_DEAL_DEALER:     if(dealerCardCount < 'd2) nextstate = S_DEAL_DEALER;
-			                   else 					 nextstate = S_CHECK_DEALER_BJ;
-		    S_CHECK_DEALER_BJ:                           nextstate = //S_CHECK_TIE?
-
+		case (`gameState)
+			`S_RESET:             		                   					nextstate = `S_DEAL_DEALER;
+			`S_DEAL_DEALER:       if(dealerCardCount < 'd2) 				nextstate = `S_DEAL_DEALER;
+			                    	else 				   					nextstate = `S_CHECK_DEALER_BJ;
+		    `S_CHECK_DEALER_BJ:   if(dealerHasBlackjack)    				nextstate = `S_RESULT_LOSE;	
+							    	else				   					nextstate = `S_DEAL_PLAYER;
+			`S_DEAL_PLAYER:       if(playerCardCount < 'd2) 				nextstate = `S_DEAL_PLAYER;
+							     	else                   					nextstate = `S_CHECK_PLAYER_BJ;
+			`S_CHECK_PLAYER_BJ:   if(playerHasBlackjack)    				nextstate = `S_RESULT_WIN;
+							     	else				   					nextstate = `S_CHECK_PLAYER_BUST;
+			`S_CHECK_PLAYER_BUST: if(playerBusted)          				nextstate = `S_RESULT_LOSE;
+								 	else                   					nextstate = `S_CHECK_PLAYER_5CC;
+		    `S_CHECK_PLAYER_5CC:  if(playerHasCharlie)      				nextstate = `S_RESULT_WIN;
+									else                   					nextstate = `S_PLAYER_CHOICE;
+		    `S_PLAYER_CHOICE:     if(playerRequestDrawCard) 				nextstate = `S_DEAL_PLAYER;
+									else if(playerCommand == `COMMAND_NONE) nextstate = `S_PLAYER_CHOICE;
+									else                   					nextstate = `S_DRAW_TO_17;
+		    `S_DRAW_TO_17:    	  if(dealerHandSum < 17)    				nextstate = `S_DRAW_TO_17;
+									else                   					nextstate = `S_CHECK_DEALER_BUST;
+			`S_CHECK_DEALER_BUST: if(dealerBusted)          				nextstate = `S_RESULT_WIN;
+									else                   					nextstate = `S_CHECK_DEALER_5CC;
+		    `S_CHECK_DEALER_5CC:  if(dealerHasCharlie)      				nextstate = `S_RESULT_LOSE;
+									else                   					nextstate = `S_COMPARE_HANDS;
+			`S_COMPARE_HANDS:     if(dealerHandSum == playerHandSum) 		nextstate = `S_RESULT_TIE;
+								  else if(dealerHandSum < playerHandSum) 	nextstate = `S_RESULT_WIN;
+								  else  								    nextstate = `S_RESULT_LOSE;
+			`S_RESULT_LOSE:								 					nextstate = `S_RESET;
+			`S_RESULT_TIE:								 					nextstate = `S_RESET;
+			`S_RESULT_WIN:								 					nextstate = `S_RESET;
+		endcase
 
 	//assign output signals
 	assign o_dealerHandSum = dealerHandSum;
