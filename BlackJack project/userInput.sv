@@ -30,6 +30,6 @@ module userInput
 		else o_command = `COMMAND_NONE;
 	end
 
-	assign ready = (i_turnIndicator && !(i_KEY == 3));//my turn and I pressed a button
+	assign o_ready = (i_turnIndicator && !(i_KEY == 3));//my turn and I pressed a button
 
 endmodule
