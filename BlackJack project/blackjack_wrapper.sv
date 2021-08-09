@@ -4,6 +4,12 @@
 	team name: POWER_OF_TWO
 */
 
+`include "card.svh"
+`include "gameCommand.svh"
+`include "gameState.svh"
+`include "hand.svh"
+`include "turnIndicator.svh"
+
 module blackjack_wrapper
 	(	
 		input  	logic       	CLOCK_50, // clk
@@ -22,10 +28,10 @@ module blackjack_wrapper
 	);
 
 	//TODO: fill in interface
-	//blackjackGame theGame(CLOCK_50, SW[17], KEY[0], KEY[1], LEDR[17: 0], 
-							LEDG[7: 0], HEX0[0: 6], HEX1[0: 6], HEX2[0: 6],
-							HEX3[0: 6], HEX4[0: 6], HEX5[0: 6], HEX6[0: 6],
-							HEX7[0: 6]);
+	blackjackGame theGame(CLOCK_50, SW[17], KEY[0], KEY[1], LEDR[17: 0], 
+						  LEDG[7: 0], HEX0[0: 6], HEX1[0: 6], HEX2[0: 6],
+						  HEX3[0: 6], HEX4[0: 6], HEX5[0: 6], HEX6[0: 6],
+						  HEX7[0: 6]);
 
 	// Justin: I don't think switch 17 will be used for gameplay at all so
 	//		   it would make good for a reset switch
