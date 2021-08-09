@@ -19,11 +19,14 @@ module randomNumberGenerator
 	logic hitTop; //dummy value
 	logic resetCounter;
 	logic enableCounter;
+	logic [WIDTH - 1 : 0] counterValue;
 
 	assign enableCounter = 1;
 	assign resetCounter = 0;
 
-	logic	[WIDTH - 1 : 0] counterValue;
+	initial	
+	o_value = -1;
+
 	counter #(WIDTH, 1) counter (i_clk, resetCounter, enableCounter, 
 		i_max, hitTop, counterValue);
 
