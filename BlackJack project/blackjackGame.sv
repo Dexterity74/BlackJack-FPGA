@@ -24,10 +24,8 @@ struct handInfo
 
 -----blackjack logic (detected, but result needs reading)
 
-
 -----5-card charlie logic (created, results need reading)
 		(needs states added to gameState.svh)
------bust logic (consider bust detector module)
 -----only show 1 card for dealer until dealer's turn.
 
 
@@ -57,22 +55,27 @@ module blackjackGame
 	);
 
 	//internal signals
-	logic 	isPlayersTurn;
-	logic 	playerRequestCardDraw;
-	logic 	dealerRequestCardDraw;
-	logic 	requestCardFromDeck; //dealer || player request
-	logic 	isDealersTurn;
-	logic 	playerInputReady;
+	logic 	isPlayersTurn = 'b0;
+	logic 	playerRequestCardDraw = 'b0;
+	logic 	dealerRequestCardDraw = 'b0;
+	logic 	requestCardFromDeck = 'b0; //dealer || player request
+	logic 	isDealersTurn = 'b0;
+	logic 	playerInputReady = 'b0;
 
 	//---------hand results---------
 	//blackjack
-	logic 	dealerHasBlackjack;
-	logic 	playerHasBlackjack;
+	logic 	dealerHasBlackjack = 'b0;
+	logic 	playerHasBlackjack = 'b0;
 
 	//5-card charlie
-	logic 	dealerHasCharlie;
-	logic 	playerHasCharlie;
+	logic 	dealerHasCharlie = 'b0;
+	logic 	playerHasCharlie = 'b0;
+
+	//bust
+	logic 	dealerBusted = 'b0;
+	logic	playerBusted = 'b0;
 	
+	//---------Hand Info------------
 	//player hand info
 	hand			playerHandSum;
 	logic 	[2:0] 	playerCardCount;
@@ -102,6 +105,10 @@ module blackjackGame
 	assign isDealersTurn = (turnTracker == TURN_DEALER);
 
 	assign requestCardFromDeck = playerRequestDrawCard || dealerRequestDrawCard;
+
+	//bust detectors
+	assign dealerBusted = dealerHandSum > 21;
+	assign playerBusted = playerHandSum > 21;
 
 	//blackjack detectors
     assign dealerHasBlackjack = dealerCardCount == 'd2 && (dealerHandSum == 'd21);
