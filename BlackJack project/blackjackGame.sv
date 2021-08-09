@@ -92,7 +92,7 @@ module blackjackGame
 	turnIndicator turnTracker;
 
 	//fsm stuff
-	gameState gameState;
+	gameState gameState, nextstate;
 
 	card 	nextCard; //to be given to either player or dealer hands
 
@@ -137,6 +137,18 @@ module blackjackGame
 
 	//card deck
 	cardDeck theDeck(i_clk, requestCardFromDeck, nextCard);
+
+	always_ff @(posedge i_clk, posedge i_reset)
+		if (i_reset) gameState <= S_RESET;
+		else         gameState <= nextstate;
+
+	always_comb 
+		case (gameState)
+			S_RESET:                                     nextstate = S_DEAL_DEALER;
+			S_DEAL_DEALER:     if(dealerCardCount < 'd2) nextstate = S_DEAL_DEALER;
+			                   else 					 nextstate = S_CHECK_DEALER_BJ;
+		    S_CHECK_DEALER_BJ:                           nextstate = //S_CHECK_TIE?
+
 
 	//assign output signals
 	assign o_dealerHandSum = dealerHandSum;
