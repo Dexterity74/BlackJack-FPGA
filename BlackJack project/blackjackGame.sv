@@ -133,7 +133,7 @@ module blackjackGame
 		playerInputReady, playerCommand);
 
 	//dealer ai
-	dealerAI dealerAI(isDealersTurn, dealerHand, dealerCommand);
+	dealerAI dealerAI(isDealersTurn, dealerHandSum, dealerCommand);
 
 	//card deck
 	cardDeck theDeck(i_clk, requestCardFromDeck, nextCard);
