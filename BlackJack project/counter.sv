@@ -25,23 +25,30 @@ module counter
 		output	logic	[WIDTH - 1 : 0] o_value
 	);
 
-	logic _hitTop; //internal value for feedback
+	logic 	hitTop;
+	logic [WIDTH - 1 : 0] value;
 
-	always @ (posedge i_clk or posedge _hitTop) 
+	initial begin
+		hitTop = 0;
+		value = 0;
+	end
+
+	always @ (posedge i_clk or posedge hitTop or posedge i_reset) 
 	begin
 		if(i_enabled)
 		begin
-			if(i_reset || _hitTop) 
-				o_value <= 0; 
+			if(i_reset || hitTop) 
+				value <= 0; 
 			else
-				o_value <= o_value + INCREMENT;//increment counter
+				value <= value + INCREMENT;//increment counter
 		end
 		else
-			o_value <= o_value;
+			value <= value;
 	end
 
-	assign _hitTop = (o_value == i_top);//internal value for feedback
+	assign hitTop = (value == i_top);//internal value for feedback
 
-	assign o_hitTop = _hitTop; //internal value sent out.
+	assign o_hitTop = hitTop;
+	assign o_value = value;
 
 endmodule
