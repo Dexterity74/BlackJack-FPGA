@@ -27,8 +27,8 @@ module blackjack_testbench
     logic standKey;
 
     //device outputs
-    `hand playerHand;
-    `hand dealerHand;
+    `hand playerHandSum;
+    `hand dealerHandSum;
     `gameState gameState;
     `turn whoseTurnIsIt;
 
@@ -45,10 +45,12 @@ module blackjack_testbench
         //initialize
         #1;
         clk = 0;
-        reset = 0;
+        reset = 1;
         hitKey = `KEY_STATE_UP;
         standKey = `KEY_STATE_UP;
         #1;
+
+        reset = 0;
 
         //now test 1 hand
 
@@ -82,9 +84,9 @@ module blackjack_testbench
         //now wait for player's choice
         #18;
 
-        hitKey = KEY_STATE_DOWN;
+        hitKey = `KEY_STATE_DOWN;
         #5;
-        hitKey = KEY_STATE_UP;
+        hitKey = `KEY_STATE_UP;
 
         //S-Deal_player card
         #5;
@@ -103,44 +105,44 @@ module blackjack_testbench
         //now wait for player's choice
         #18;
 
-        hitKey = KEY_STATE_DOWN;
+        hitKey = `KEY_STATE_DOWN;
         #5;
-        hitKey = KEY_STATE_UP;
+        hitKey = `KEY_STATE_UP;
         
         //now wait for player's choice
         #18;
 
-        hitKey = KEY_STATE_DOWN;
+        hitKey = `KEY_STATE_DOWN;
         #5;
-        hitKey = KEY_STATE_UP;
+        hitKey = `KEY_STATE_UP;
         
         //now wait for player's choice
         #18;
 
-        hitKey = KEY_STATE_DOWN;
+        hitKey = `KEY_STATE_DOWN;
         #5;
-        hitKey = KEY_STATE_UP;
+        hitKey = `KEY_STATE_UP;
         
         //now wait for player's choice
         #18;
 
-        hitKey = KEY_STATE_DOWN;
+        hitKey = `KEY_STATE_DOWN;
         #5;
-        hitKey = KEY_STATE_UP;
+        hitKey = `KEY_STATE_UP;
         
         //now wait for player's choice
         #18;
 
-        hitKey = KEY_STATE_DOWN;
+        hitKey = `KEY_STATE_DOWN;
         #5;
-        hitKey = KEY_STATE_UP;
+        hitKey = `KEY_STATE_UP;
         
         //now wait for player's choice
         #18;
 
-        hitKey = KEY_STATE_DOWN;
+        hitKey = `KEY_STATE_DOWN;
         #5;
-        hitKey = KEY_STATE_UP;
+        hitKey = `KEY_STATE_UP;
 
     
     end
