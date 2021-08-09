@@ -104,7 +104,8 @@ module blackjackGame
 	assign isPlayersTurn = (turnTracker == `TURN_PLAYER);
 	assign isDealersTurn = (turnTracker == `TURN_DEALER);
 
-	assign requestCardFromDeck = playerRequestDrawCard || dealerRequestDrawCard;
+	assign requestCardFromDeck = playerRequestDrawCard || dealerRequestDrawCard
+		|| `S_DEAL_DEALER || `S_DEAL_PLAYER;
 
 	//bust detectors
 	assign dealerBusted = dealerHandSum > 'd21;
@@ -172,6 +173,28 @@ module blackjackGame
 			`S_RESULT_LOSE:								 					nextstate = `S_RESET;
 			`S_RESULT_TIE:								 					nextstate = `S_RESET;
 			`S_RESULT_WIN:								 					nextstate = `S_RESET;
+		endcase
+
+
+	//turn stuff
+	always_comb 
+		case(gameState)
+			//player phases
+			`S_PLAYER_CHOICE:	 	turnTracker = `TURN_PLAYER;
+			`S_CHECK_PLAYER_5CC:	turnTracker = `TURN_PLAYER;
+			`S_CHECK_PLAYER_BUST:	turnTracker = `TURN_PLAYER;
+			`S_CHECK_PLAYER_BJ:		turnTracker = `TURN_PLAYER;
+			`S_DEAL_PLAYER:			turnTracker = `TURN_PLAYER;
+
+			//dealer's turn
+			`S_DEAL_DEALER:			turnTracker = `TURN_DEALER;
+			`S_CHECK_DEALER_BJ:		turnTracker = `TURN_DEALER;
+			`S_DRAW_TO_17: 			turnTracker = `TURN_DEALER;
+			`S_CHECK_DEALER_BUST:	turnTracker = `TURN_DEALER;
+			`S_CHECK_DEALER_5CC:	turnTracker = `TURN_DEALER;
+			
+			//internal idle turn
+			default: turnTracker = `TURN_NONE;
 		endcase
 
 	//assign output signals
