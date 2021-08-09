@@ -22,7 +22,6 @@ struct handInfo
 
 -----output module rigged
 
-
 -----blackjack logic (consider blackjack detector module)
 -----5-card charlie logic (consider 5-cardcharlie detector module)
 		(needs states added to gameState.svh)
@@ -62,6 +61,8 @@ module blackjackGame
 	logic 	requestCardFromDeck; //dealer || player request
 	logic 	isDealersTurn;
 	logic 	playerInputReady;
+	logic 	dealerHasBlackjack;
+	logic 	playerHasBlackjack;
 	
 	//player hand info
 	hand			playerHandSum;
@@ -92,6 +93,10 @@ module blackjackGame
 	assign isDealersTurn = (turnTracker == TURN_DEALER);
 
 	assign requestCardFromDeck = playerRequestDrawCard || dealerRequestDrawCard;
+
+	//blackjack detectors
+    assign dealerHasBlackjack = dealerCardCount == 'd2 && (dealerHandSum == 'd21);
+    assign playerHasBlackjack = playerCardCount == 'd2 && (playerHandSum == 'd21);
 
 	//hands full of cards
 	handController playerHandController(i_reset, 
