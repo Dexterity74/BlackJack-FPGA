@@ -20,10 +20,12 @@ struct handInfo
 ------- outputs are already handled, so needs to affect internal signals
 (like whose turn it is)
 
------output module rigged
+-----output module rigged (created, needs rigging)
 
------blackjack logic (consider blackjack detector module)
------5-card charlie logic (consider 5-cardcharlie detector module)
+-----blackjack logic (detected, but result needs reading)
+
+
+-----5-card charlie logic (created, results need reading)
 		(needs states added to gameState.svh)
 -----bust logic (consider bust detector module)
 -----only show 1 card for dealer until dealer's turn.
@@ -61,8 +63,15 @@ module blackjackGame
 	logic 	requestCardFromDeck; //dealer || player request
 	logic 	isDealersTurn;
 	logic 	playerInputReady;
+
+	//---------hand results---------
+	//blackjack
 	logic 	dealerHasBlackjack;
 	logic 	playerHasBlackjack;
+
+	//5-card charlie
+	logic 	dealerHasCharlie;
+	logic 	playerHasCharlie;
 	
 	//player hand info
 	hand			playerHandSum;
@@ -97,6 +106,10 @@ module blackjackGame
 	//blackjack detectors
     assign dealerHasBlackjack = dealerCardCount == 'd2 && (dealerHandSum == 'd21);
     assign playerHasBlackjack = playerCardCount == 'd2 && (playerHandSum == 'd21);
+	
+	//5-card charlie detectors
+    assign dealerHasBlackjack = dealerCardCount == 'd5 && (dealerHandSum <= 'd21);
+    assign playerHasBlackjack = playerCardCount == 'd5 && (playerHandSum <= 'd21);
 
 	//hands full of cards
 	handController playerHandController(i_reset, 
