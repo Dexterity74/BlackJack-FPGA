@@ -21,13 +21,13 @@ struct
 
 module handController
     (
-        input   logic   i_reset,
+        input   logic   i_reset,        //resets on hi
         input   logic   i_addNewCard,
-        input   `card    i_newCard,
+        input   `card   i_newCard,
 
-        output  `hand    o_handSum, //gorgeous
-        output  logic [2:0] o_numberOfCardsInHand,
-        output  `card [4 : 0] o_cards_in_hand
+        output  `hand           o_handSum, //gorgeous
+        output  logic [2:0]     o_numberOfCardsInHand,
+        output  `card [4 : 0]   o_cards_in_hand
     );
 
     `card [4: 0] cardsInHand;
