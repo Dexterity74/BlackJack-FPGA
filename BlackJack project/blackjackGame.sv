@@ -97,15 +97,17 @@ module blackjackGame
 	`card 	nextCard; //to be given to either player or dealer hands
 
 	//internal signal assignments
-	assign playerRequestDrawCard = (isPlayersTurn && playerCommand == `COMMAND_HIT);
-	assign dealerRequestDrawCard = (isDealersTurn && dealerCommand == `COMMAND_HIT);
+	assign playerRequestDrawCard = (isPlayersTurn 
+		&& playerCommand == `COMMAND_HIT && gameState == `S_DEAL_PLAYER);
+	assign dealerRequestDrawCard = (isDealersTurn 
+		&& dealerCommand == `COMMAND_HIT && gameState == `S_DEAL_DEALER);
 
 	//turn stuff
 	assign isPlayersTurn = (turnTracker == `TURN_PLAYER);
 	assign isDealersTurn = (turnTracker == `TURN_DEALER);
 
-	assign requestCardFromDeck = playerRequestDrawCard || dealerRequestDrawCard
-		|| `S_DEAL_DEALER || `S_DEAL_PLAYER;
+	assign requestCardFromDeck = (playerRequestDrawCard 
+		|| dealerRequestDrawCard);
 
 	//bust detectors
 	assign dealerBusted = dealerHandSum > 'd21;
