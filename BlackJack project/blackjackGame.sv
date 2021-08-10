@@ -178,7 +178,8 @@ module blackjackGame
 		    `S_PLAYER_CHOICE:     if(playerRequestDrawCard) 				nextstate = `S_DEAL_PLAYER;
 									else if(playerCommand == `COMMAND_NONE) nextstate = `S_PLAYER_CHOICE;
 									else                   					nextstate = `S_DRAW_TO_17;
-		    `S_DRAW_TO_17:    	  if(dealerHandSum < 17)    				nextstate = `S_DRAW_TO_17;
+		    `S_DRAW_TO_17:    	  if(dealerHandSum < 17
+									&& dealerCardCount < 5)   				nextstate = `S_DRAW_TO_17;
 									else                   					nextstate = `S_CHECK_DEALER_BUST;
 			`S_CHECK_DEALER_BUST: if(dealerBusted)          				nextstate = `S_RESULT_WIN;
 									else                   					nextstate = `S_CHECK_DEALER_5CC;
