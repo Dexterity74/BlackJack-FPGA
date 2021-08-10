@@ -123,12 +123,12 @@ module blackjackGame
 
 	//hands full of cards
 	handController playerHandController(i_clk, i_reset, 
-		playerRequestDrawCard,//possible TIMING ISSUE HERE! card is not ready yet. maybe wait one clock cycle.
+		playerRequestDrawCard,
 		nextCard, playerHandSum, playerCardCount, playerHand);
 		
 	//hands full of cards
 	handController dealerHandController(i_clk, i_reset, 
-		dealerRequestDrawCard,//possible TIMING ISSUE HERE! card is not ready yet. maybe wait one clock cycle.
+		dealerRequestDrawCard,
 		nextCard, dealerHandSum, dealerCardCount, dealerHand);
 
 	//user input
