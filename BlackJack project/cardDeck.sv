@@ -32,15 +32,15 @@ module cardDeck
     always_comb
     begin
         if(requestCard)
-        begin
-            case(_rngValue)
-                'd9:        dealtCard = 'd10;//10
-                'd10:       dealtCard = 'd10;//jack
-                'd11:       dealtCard = 'd10;//queen
-                'd12:       dealtCard = 'd10;//king
-                default:    dealtCard = _rngValue + 1; //all else
-            endcase 
-        end
+            begin
+                case(_rngValue)
+                    'd9:        dealtCard = 'd10;//10
+                    'd10:       dealtCard = 'd10;//jack
+                    'd11:       dealtCard = 'd10;//queen
+                    'd12:       dealtCard = 'd10;//king
+                    default:    dealtCard = _rngValue + 1; //all else
+                endcase 
+            end
         else    dealtCard = -1; //invalid card amount
     end
 
