@@ -18,6 +18,7 @@ module randomNumberGenerator
 
 	//logic resetCounter;
 	logic enableCounter;
+	logic [WIDTH - 1 : 0] counterValue;
 
 	assign enableCounter = 1;
 	//assign resetCounter = 0;
