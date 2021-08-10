@@ -20,6 +20,10 @@ module randomNumberGenerator
 	logic enableCounter;
 	logic [WIDTH - 1 : 0] counterValue;
 
+	initial begin
+		o_value = 0;
+	end
+
 	assign enableCounter = 1;
 	//assign resetCounter = 0;
 
