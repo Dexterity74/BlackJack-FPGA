@@ -29,8 +29,7 @@ module counter
 	logic [WIDTH - 1 : 0] value;
 
 	initial begin
-		hitTop = 0;
-		value = 0;
+		value <= 0;
 	end
 
 	always @ (posedge i_clk or posedge hitTop or posedge i_reset) 
