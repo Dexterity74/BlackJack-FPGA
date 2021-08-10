@@ -1,0 +1,5 @@
+dealer is being dealt 3 cards
+3rd card dealer is illegally dealt is a C (why? the `nextCard` is never 12)
+
+player takes turn, requests card, `nextCard` gets updated,
+    but card doesn't get added to player's hand.
