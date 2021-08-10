@@ -203,11 +203,11 @@ module blackjackGame
 			`S_DEAL_PLAYER:			turnTracker = `TURN_PLAYER;
 
 			//dealer's turn
-			`S_DEAL_DEALER:			turnTracker = `TURN_DEALER;
+			`S_CHECK_DEALER_5CC:	turnTracker = `TURN_DEALER;
+			`S_CHECK_DEALER_BUST:	turnTracker = `TURN_DEALER;
 			`S_CHECK_DEALER_BJ:		turnTracker = `TURN_DEALER;
 			`S_DRAW_TO_17: 			turnTracker = `TURN_DEALER;
-			`S_CHECK_DEALER_BUST:	turnTracker = `TURN_DEALER;
-			`S_CHECK_DEALER_5CC:	turnTracker = `TURN_DEALER;
+			`S_DEAL_DEALER:			turnTracker = `TURN_DEALER;
 			
 			//internal idle turn
 			default: turnTracker = `TURN_NONE;
