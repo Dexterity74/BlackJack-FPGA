@@ -108,7 +108,8 @@ module blackjackGame
 	assign playerRequestDrawCard = (isPlayersTurn 
 		&& playerCommand == `COMMAND_HIT && gameState == `S_DEAL_PLAYER);
 	assign dealerRequestDrawCard = (isDealersTurn 
-		&& dealerCommand == `COMMAND_HIT && gameState == `S_DEAL_DEALER);
+		&& dealerCommand == `COMMAND_HIT 
+		&& (gameState == `S_DEAL_DEALER || gameState == `S_DRAW_TO_17));
 
 	//turn stuff
 	assign isPlayersTurn = (turnTracker == `TURN_PLAYER);
