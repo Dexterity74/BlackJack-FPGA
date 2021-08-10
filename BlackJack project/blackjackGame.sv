@@ -190,6 +190,7 @@ module blackjackGame
 			`S_RESULT_LOSE:								 					nextstate = `S_RESET;
 			`S_RESULT_TIE:								 					nextstate = `S_RESET;
 			`S_RESULT_WIN:								 					nextstate = `S_RESET;
+			default:														nextState = `S_RESET;
 		endcase
 
 
