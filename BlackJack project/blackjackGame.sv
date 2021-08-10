@@ -77,17 +77,17 @@ module blackjackGame
 	
 	//---------Hand Info------------
 	//player hand info
-	`hand			playerHandSum;
-	logic 	[2:0] 	playerCardCount;
-	`card 	[4:0] 	playerHand;
+	`hand				playerHandSum; //sum
+	logic 	[2:0] 		playerCardCount; //quantity
+	`HAND_OF_5_CARDS 	playerHand; //array of 5 cards
 
 	//dealer hand info
-	`hand			dealerHandSum;
-	logic 	[2:0] 	dealerCardCount; 
-	`card 	[4:0] 	dealerHand;
+	`hand				dealerHandSum;	//sum
+	logic 	[2:0] 		dealerCardCount; //quantity
+	`HAND_OF_5_CARDS 	dealerHand; //array of 5 cards
 
-	`gameCommand		dealerCommand;
-	`gameCommand		playerCommand;
+	`gameCommand	dealerCommand;
+	`gameCommand	playerCommand;
 
 	`turn turnTracker;
 
@@ -120,12 +120,12 @@ module blackjackGame
     assign playerHasCharlie = playerCardCount == 'd5 && (playerHandSum <= 'd21);
 
 	//hands full of cards
-	handController playerHandController(i_reset, 
+	handController playerHandController(i_clk, i_reset, 
 		playerRequestDrawCard,//possible TIMING ISSUE HERE! card is not ready yet. maybe wait one clock cycle.
 		nextCard, playerHandSum, playerCardCount, playerHand);
 		
 	//hands full of cards
-	handController dealerHandController(i_reset, 
+	handController dealerHandController(i_clk, i_reset, 
 		dealerRequestDrawCard,//possible TIMING ISSUE HERE! card is not ready yet. maybe wait one clock cycle.
 		nextCard, dealerHandSum, dealerCardCount, dealerHand);
 

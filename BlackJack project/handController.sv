@@ -21,13 +21,14 @@ struct
 
 module handController
     (
+        input   logic   i_clk,
         input   logic   i_reset,        //resets on hi
         input   logic   i_addNewCard,
         input   `card   i_newCard,
 
         output  `hand           o_handSum, //gorgeous
         output  logic [2:0]     o_numberOfCardsInHand,
-        output  `card [4 : 0]   o_cardsInHand
+        output  `card [4 : 0]   o_cardsInHand //array of card values
     );
 
     `card [4: 0] cardsInHand;
@@ -43,7 +44,7 @@ module handController
         end
     end
 
-    always_ff @(posedge i_addNewCard or posedge i_reset)
+    always_ff @(posedge i_clk or posedge i_reset)
     begin
         if(i_reset)
         begin
@@ -54,11 +55,27 @@ module handController
             handSum = 5'b0;
             cardIndex = 0;
         end
-        else
+        else if(i_addNewCard)
         begin
-            cardsInHand[cardIndex] = i_newCard;
-            cardIndex = cardIndex + 1;
-            handSum = handSum + i_newCard;
+            //set new card value and retain old values
+            for(int i = 0; i < `MAX_CARDS; ++i)
+            begin
+                if(i == cardIndex)
+                    cardsInHand[cardIndex] = i_newCard;
+                else
+                    cardsInHand[i] = cardsInHand[i];
+            end
+            cardIndex = cardIndex + 1; //++index
+            handSum = handSum + i_newCard;//sum += new card value
+        end
+        else //retain values
+        begin
+            for(int i = 0; i < `MAX_CARDS; ++i)
+            begin
+                cardsInHand[i] = cardsInHand[i];
+            end
+            cardIndex = cardIndex;
+            handSum = handSum;
         end
     end
 
