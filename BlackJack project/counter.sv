@@ -33,7 +33,7 @@ module counter
 
 	logic _hitTop;
 
-	assign _hitTop = o_value > i_top;
+	assign _hitTop = _value > i_top;
 
 	always_ff @(posedge i_clk) 
 		begin

@@ -21,18 +21,21 @@ module handController_testbench
     //outputs
     logic [2:0] numberOfCardsInHand;
     `hand handSum;
-    `HAND_OF_5_CARDS cardsInHand;
+    `card   card0;
+    `card   card1;
+    `card   card2;
+    `card   card3;
+    `card   card4;
 
     handController dut(clk, reset, addNewCard, 
         newCardValue, handSum, numberOfCardsInHand, 
-        cardsInHand);
+        card0, card1, card2, card3, card4);
 
     initial begin
         #1;
         reset = 1;
         addNewCard = 0;
         clk = 0;
-        newCardValue = 0;
         #3;
         reset = 0;
     end
@@ -50,14 +53,27 @@ module handController_testbench
     always 
     begin
         newCardValue = 'h5;
-        #6;
+        #5;
         addNewCard = 1;
-        #4;
+        #5;
         addNewCard = 0;
         newCardValue = 'h3;
         #5;
         addNewCard = 1;
         #5;
+        
+        newCardValue = 'h7;
+        #5;
+        addNewCard = 1;
+        #5;
+        addNewCard = 0;
+        newCardValue = 'h1;
+        #5;
+        addNewCard = 1;
+        #15;
+        reset = 1;
+        #5;
+        reset = 0;
     end
 
 endmodule

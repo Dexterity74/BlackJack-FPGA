@@ -8,5 +8,6 @@
 
 //custom signal type
 `define card logic [3:0]
-`define HAND_OF_5_CARDS logic [4:0] [3:0] //5 cards of 4 bits
+`define HAND_OF_5_CARDS logic [3:0] [4:0] //5 cards of 4 bits
+`define MAX_CARDS 5
 //typedef logic [3:0] card;

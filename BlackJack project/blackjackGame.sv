@@ -77,14 +77,22 @@ module blackjackGame
 	
 	//---------Hand Info------------
 	//player hand info
-	`hand				playerHandSum; //sum
+	`hand	playerHandSum; //sum
 	logic 	[2:0] 		playerCardCount; //quantity
-	`HAND_OF_5_CARDS 	playerHand; //array of 5 cards
+	`card 	playerHand0; //array of 5 cards
+	`card 	playerHand1;
+	`card 	playerHand2;
+	`card 	playerHand3;
+	`card 	playerHand4;
 
 	//dealer hand info
-	`hand				dealerHandSum;	//sum
+	`hand	dealerHandSum;	//sum
 	logic 	[2:0] 		dealerCardCount; //quantity
-	`HAND_OF_5_CARDS 	dealerHand; //array of 5 cards
+	`card 	dealerHand0; //array of 5 cards
+	`card 	dealerHand1;
+	`card 	dealerHand2;
+	`card 	dealerHand3;
+	`card 	dealerHand4;
 
 	`gameCommand	dealerCommand;
 	`gameCommand	playerCommand;
@@ -127,13 +135,15 @@ module blackjackGame
 
 	//hands full of cards
 	handController playerHandController(i_clk, i_reset, 
-		playerRequestDrawCard,
-		nextCard, playerHandSum, playerCardCount, playerHand);
+		playerRequestDrawCard, nextCard, 
+		playerHandSum, playerCardCount,
+		playerHand0, playerHand1, playerHand2, playerHand3, playerHand4);
 		
 	//hands full of cards
 	handController dealerHandController(i_clk, i_reset, 
-		dealerRequestDrawCard,
-		nextCard, dealerHandSum, dealerCardCount, dealerHand);
+		dealerRequestDrawCard, nextCard, 
+		dealerHandSum, dealerCardCount, dealerHand0,
+		dealerHand1, dealerHand2, dealerHand3, dealerHand4);
 
 	//user input
 	userInput userInput(i_clk, isPlayersTurn, i_keyInput, 
