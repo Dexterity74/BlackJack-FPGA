@@ -114,12 +114,16 @@ module blackjackGame
 	assign playerBusted = playerHandSum > 'd21;
 
 	//blackjack detectors
-    assign dealerHasBlackjack = dealerCardCount == 'd2 && (dealerHandSum == 'd21);
-    assign playerHasBlackjack = playerCardCount == 'd2 && (playerHandSum == 'd21);
+    assign dealerHasBlackjack = dealerCardCount == 'd2 
+		&& (dealerHandSum == 'd21);
+    assign playerHasBlackjack = playerCardCount == 'd2 
+		&& (playerHandSum == 'd21);
 	
 	//5-card charlie detectors
-    assign dealerHasCharlie = dealerCardCount == 'd5 && (dealerHandSum <= 'd21);
-    assign playerHasCharlie = playerCardCount == 'd5 && (playerHandSum <= 'd21);
+    assign dealerHasCharlie = dealerCardCount == 'd5 
+		&& (dealerHandSum <= 'd21);
+    assign playerHasCharlie = playerCardCount == 'd5 
+		&& (playerHandSum <= 'd21);
 
 	//hands full of cards
 	handController playerHandController(i_clk, i_reset, 
