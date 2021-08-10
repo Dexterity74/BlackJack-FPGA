@@ -106,7 +106,8 @@ module blackjackGame
 
 	//internal signal assignments
 	assign playerRequestDrawCard = (isPlayersTurn 
-		&& playerCommand == `COMMAND_HIT && gameState == `S_DEAL_PLAYER);
+		&& playerCommand == `COMMAND_HIT 
+		&& (gameState == `S_DEAL_PLAYER || gameState == `S_PLAYER_CHOICE));
 	assign dealerRequestDrawCard = (isDealersTurn 
 		&& dealerCommand == `COMMAND_HIT 
 		&& (gameState == `S_DEAL_DEALER || gameState == `S_DRAW_TO_17));
