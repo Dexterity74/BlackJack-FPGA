@@ -23,7 +23,6 @@ module randomNumberGenerator
 	assign enableCounter = 1;
 	//assign resetCounter = 0;
 
-	logic	[WIDTH - 1 : 0] counterValue;
 	counter #(WIDTH, 1) cntr (i_clk, enableCounter, 
 		i_max, counterValue);
 
