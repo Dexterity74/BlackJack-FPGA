@@ -45,7 +45,7 @@ module blackjackGame
 	(
 		input  	logic			i_clk,
 		input 	logic			i_reset,
-		input 	logic [1 : 0]	i_keyInput,
+		input 	logic [2 : 0]	i_keyInput,
 
 		//TODO - output other hand info as well for more detailed readout (each card)
 		output 	`hand			o_playerHandSum,	
@@ -61,6 +61,7 @@ module blackjackGame
 	logic 	requestCardFromDeck; //dealer || player request
 	logic 	isDealersTurn;
 	logic 	playerInputReady;
+	logic 	dealButtonPushed; //NOT HIT, this is for RNG "seed".
 
 	//---------hand results---------
 	//blackjack
@@ -149,7 +150,7 @@ module blackjackGame
 
 	//user input
 	userInput userInput(i_clk, isPlayersTurn, i_keyInput, 
-		playerInputReady, playerCommand);
+		dealButtonPushed, playerInputReady, playerCommand);
 
 	//dealer ai
 	dealerAI dealerAI(isDealersTurn, dealerHandSum, dealerCommand);
