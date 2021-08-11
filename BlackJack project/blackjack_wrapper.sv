@@ -39,7 +39,7 @@ module blackjack_wrapper
 	
 
 
-	outputController oC(dealerHandSum, playerHandSum, gamestate, HEX7[0: 6], HEX6[0: 6], HEX5[0: 6], HEX4[0: 6], 
+	outputController oC(dealerHandSum, playerHandSum, gameState, HEX7[0: 6], HEX6[0: 6], HEX5[0: 6], HEX4[0: 6], 
 							HEX3[0: 6], HEX2[0: 6], HEX1[0: 6], HEX0[0: 6]);
 
 	// Justin: I don't think switch 17 will be used for gameplay at all so
