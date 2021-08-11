@@ -195,9 +195,9 @@ module blackjackGame
 			`S_COMPARE_HANDS:     if(dealerHandSum == playerHandSum) 		nextstate = `S_RESULT_TIE;
 								    else if(dealerHandSum < playerHandSum) 	nextstate = `S_RESULT_WIN;
 								    else  								    nextstate = `S_RESULT_LOSE;
-			`S_RESULT_LOSE:								 					nextstate = `S_RESET;
-			`S_RESULT_TIE:								 					nextstate = `S_RESET;
-			`S_RESULT_WIN:								 					nextstate = `S_RESET;
+			`S_RESULT_LOSE:		  if(reset == 'b1)					    	nextstate = `S_RESET;
+			`S_RESULT_TIE:		  if(reset == 'b1)						 	nextstate = `S_RESET;
+			`S_RESULT_WIN:		  if(reset == 'b1)						 	nextstate = `S_RESET;
 			default:														nextstate = `S_RESET;
 		endcase
 
