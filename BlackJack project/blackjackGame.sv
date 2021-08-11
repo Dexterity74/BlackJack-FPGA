@@ -196,8 +196,11 @@ module blackjackGame
 								    else if(dealerHandSum < playerHandSum) 	nextstate = `S_RESULT_WIN;
 								    else  								    nextstate = `S_RESULT_LOSE;
 			`S_RESULT_LOSE:		  if(reset == 'b1)					    	nextstate = `S_RESET;
+									else									nextstate = `S_RESULT_LOSE;
 			`S_RESULT_TIE:		  if(reset == 'b1)						 	nextstate = `S_RESET;
+									else									nextstate = `S_RESULT_TIE;
 			`S_RESULT_WIN:		  if(reset == 'b1)						 	nextstate = `S_RESET;
+									else									nextstate = `S_RESULT_WIN;
 			default:														nextstate = `S_RESET;
 		endcase
 
