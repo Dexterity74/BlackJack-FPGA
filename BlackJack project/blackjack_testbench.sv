@@ -114,11 +114,19 @@ module blackjack_testbench
         #5; //should absolutely be false
 
         //now wait for player's choice
-        #18;
+        #15;
 
+        //deal second card to player
         KEY[`HIT] = `KEY_STATE_DOWN;
-        #5;
+        #110;
         KEY[`HIT] = `KEY_STATE_UP;
+        #5;
+        
+        //deal second card to player
+        KEY[`STAND] = `KEY_STATE_DOWN;
+        #110;
+        KEY[`STAND] = `KEY_STATE_UP;
+        #5;
 
         //S-Deal_player card
         #5;
