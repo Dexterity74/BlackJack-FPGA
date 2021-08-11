@@ -32,6 +32,6 @@ module userInput
 	end
 
 	assign o_dealButtonPushed = ~i_KEY[2];
-	assign o_ready = (i_turnIndicator && !(i_KEY == 3));//my turn and I pressed a button
+	assign o_ready = (i_turnIndicator && !(i_KEY[1:0] == 3));//my turn and I pressed a button
 
 endmodule
