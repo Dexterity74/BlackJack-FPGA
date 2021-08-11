@@ -8,6 +8,7 @@
 	note that i_KEYS are high when not pushed and low when they are pushed.
 */
 `include "gameCommand.svh"
+`define BOUND_DELAY 'd10 //'d10000 for production
 
 module userInput
 	(
@@ -23,8 +24,7 @@ module userInput
 	//button debouncers
 	logic buttonDelayReady;
 	logic resetButtonTimer;
-	logic [13:0] DELAY_MAX = 'd10000; //~0.5 seconds
-	//logic [13:0] DELAY_MAX = 'd100; //test
+	logic [13:0] DELAY_MAX = `BOUND_DELAY; //~0.5 seconds
 	logic [13:0] delayValue_dummy; //not used
 
 	assign resetButtonTimer = buttonDelayReady 

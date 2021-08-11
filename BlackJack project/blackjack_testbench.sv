@@ -12,9 +12,9 @@
 `include "hand.svh"
 `include "turnIndicator.svh"
 
-`define HIT_KEY 0
-`define STAND_KEY 1
-`define DEAL_CARD_KEY 2
+`define HIT 0
+`define STAND 1
+`define DEAL 2
 `define KEY_STATE_UP 1
 `define KEY_STATE_DOWN 0
 
@@ -23,8 +23,7 @@ module blackjack_testbench
     //device inputs
     logic clk;
     logic reset;
-    logic hitKey;
-    logic standKey;
+    logic [2:0] KEY;
 
     //device outputs
     `hand playerHandSum;
@@ -32,7 +31,7 @@ module blackjack_testbench
     `gameState gameState;
     `turn whoseTurnIsIt;
 
-    blackjackGame dut(clk, reset, {standKey, hitKey}, 
+    blackjackGame dut(clk, reset, KEY, 
         playerHandSum, dealerHandSum, gameState, whoseTurnIsIt);
 
     always
@@ -46,30 +45,63 @@ module blackjack_testbench
         #1;
         clk = 0;
         reset = 1;
-        hitKey = `KEY_STATE_UP;
-        standKey = `KEY_STATE_UP;
+        KEY = 'B111; //UP
         #1;
 
         reset = 0;
+        #3;
 
         //now test 1 hand
 
         //deal dealer 1st card
+        
+        KEY[`DEAL] = `KEY_STATE_DOWN;
+        #110;
+        KEY[`DEAL] = `KEY_STATE_UP;
         #5;
 
         //deal dealer 2nd card 
+        KEY[`DEAL] = `KEY_STATE_DOWN;
+        #110;
+        KEY[`DEAL] = `KEY_STATE_UP;
         #5;
 
         //check blackjack (most likely not blackjack)
         #5;
+        
+        //deal dealer 2nd card 
+        KEY[`DEAL] = `KEY_STATE_DOWN;
+        #110;
+        KEY[`DEAL] = `KEY_STATE_UP;
+        #5;
 
-        //S_DEALERS_TURN (not)
+        //deal dealer 2nd card 
+        KEY[`DEAL] = `KEY_STATE_DOWN;
+        #110;
+        KEY[`DEAL] = `KEY_STATE_UP;
+        #5;
+
+        //check bj
+        #5;
+
+        
+        //check bust
+        #5;
+
+        
+        //check charlie
         #5;
 
         //deal first card to player
+        KEY[`HIT] = `KEY_STATE_DOWN;
+        #110;
+        KEY[`HIT] = `KEY_STATE_UP;
         #5;
 
         //deal second card to player
+        KEY[`HIT] = `KEY_STATE_DOWN;
+        #110;
+        KEY[`HIT] = `KEY_STATE_UP;
         #5;
 
         //check player bj
@@ -84,9 +116,9 @@ module blackjack_testbench
         //now wait for player's choice
         #18;
 
-        hitKey = `KEY_STATE_DOWN;
+        KEY[`HIT] = `KEY_STATE_DOWN;
         #5;
-        hitKey = `KEY_STATE_UP;
+        KEY[`HIT] = `KEY_STATE_UP;
 
         //S-Deal_player card
         #5;
@@ -105,44 +137,8 @@ module blackjack_testbench
         //now wait for player's choice
         #18;
 
-        hitKey = `KEY_STATE_DOWN;
-        #5;
-        hitKey = `KEY_STATE_UP;
-        
-        //now wait for player's choice
-        #18;
-
-        hitKey = `KEY_STATE_DOWN;
-        #5;
-        hitKey = `KEY_STATE_UP;
-        
-        //now wait for player's choice
-        #18;
-
-        hitKey = `KEY_STATE_DOWN;
-        #5;
-        hitKey = `KEY_STATE_UP;
-        
-        //now wait for player's choice
-        #18;
-
-        hitKey = `KEY_STATE_DOWN;
-        #5;
-        hitKey = `KEY_STATE_UP;
-        
-        //now wait for player's choice
-        #18;
-
-        hitKey = `KEY_STATE_DOWN;
-        #5;
-        hitKey = `KEY_STATE_UP;
-        
-        //now wait for player's choice
-        #18;
-
-        hitKey = `KEY_STATE_DOWN;
-        #5;
-        hitKey = `KEY_STATE_UP;
+        KEY[`HIT] = `KEY_STATE_DOWN;
+        #500;
 
     
     end

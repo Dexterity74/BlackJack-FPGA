@@ -166,7 +166,7 @@ module blackjackGame
 	always_comb 
 		case (gameState)
 			`S_RESET:             		                   					nextstate = `S_DEAL_DEALER;
-			`S_DEAL_DEALER:       if(dealerCardCount < 'd1) 				nextstate = `S_DEAL_DEALER;
+			`S_DEAL_DEALER:       if(dealerCardCount < 'd2) 				nextstate = `S_DEAL_DEALER;
 			                    	else 				   					nextstate = `S_CHECK_DEALER_BJ;
 		    `S_CHECK_DEALER_BJ:   if(dealerHasBlackjack)    				nextstate = `S_RESULT_LOSE;	
 							    	else				   					nextstate = `S_DEAL_PLAYER;
