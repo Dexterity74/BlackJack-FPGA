@@ -8,7 +8,7 @@
 	note that i_KEYS are high when not pushed and low when they are pushed.
 */
 `include "gameCommand.svh"
-`define BOUND_DELAY 'd10 //'d10000 for production
+`define BOUND_DELAY 'd10000 //'d10000 for production
 
 module userInput
 	(
