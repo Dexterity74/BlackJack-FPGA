@@ -1,13 +1,3 @@
-dealer is being dealt 3 cards during deal phase (expected 2 cards)
+ACE logic
 
-dealer hand 19, player hand 7 resulted in going to S_RESULT_WIN (expected LOSE)
-
-gameState goes from S_PLAYER_CHOICE straight to Draw to 17. Why??? How???
-
-Initial cards are predictable since RNG counter increments with clock.
-Must rely on KEY push to deal cards so there is an undeterminable amount
-of time between each card draw.
-
-player's card is drawn on posedge(clk) and KEY is pressed. This could
-potentially draw multiple cards in an instance if the player holds
-the button down. Card draw for player must occur on negedge(KEY).
+pause at end of game
