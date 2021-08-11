@@ -124,13 +124,19 @@ module outputController
 					temp = {1'b0, playerHand} - 5'd10;
 					playerHand6 = temp;
 				end
-			else
+			else if(playerHand <= 5'd30)
 				begin
 					//make left 7-seg 2 and right 7-seg playerHand - 20
 					playerHand7 = 5'd2;
 					temp = {1'b0, playerHand} - 5'd20;
 					playerHand6 = temp;
 				end		
+			else
+				begin //for the 1/100000 chance that the player hits at 20 and gets a 10
+					playerHand7 = 5'd3;
+					temp = {1'b0, playerHand} - 5'd30;
+					playerHand6 = temp;
+				end
 		end
 	
 	// always block for dealer
