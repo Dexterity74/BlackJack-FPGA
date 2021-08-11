@@ -21,25 +21,26 @@ module counter
 		//input	logic 	i_enabled,	//hi means enabled
 		input	logic	[WIDTH - 1 : 0]	i_top,
 
+		output 	logic 					o_hitTop,
 		output	logic	[WIDTH - 1 : 0] o_value
 	);
 
 	logic [WIDTH - 1 : 0] _value;
 
 	initial 
-		begin
-			_value = 'd0;
-		end
+	begin
+		_value = 'd0;
+	end
 
-	logic _hitTop;
+	logic hitTop;
 
-	assign _hitTop = _value > i_top;
+	assign hitTop = _value > i_top;
 
 	always_ff @(posedge i_clk) 
 		begin
 			if(i_clk)
 				begin
-					if(_hitTop) 
+					if(hitTop) 
 						_value <= 0; 
 					else
 						_value <= _value + INCREMENT;//increment counter
@@ -49,5 +50,6 @@ module counter
 		end
 
 	assign o_value  = _value;
+	assign o_hitTop = hitTop;
 
 endmodule

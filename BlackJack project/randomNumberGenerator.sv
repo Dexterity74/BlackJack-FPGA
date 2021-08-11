@@ -18,6 +18,7 @@ module randomNumberGenerator
 
 	//logic resetCounter;
 	//logic enableCounter;
+	logic hitTop_dummy; //not used by this module, but must be tied to something.
 	logic [WIDTH - 1 : 0] counterValue;
 
 	initial begin
@@ -27,7 +28,7 @@ module randomNumberGenerator
 	//assign enableCounter = 1;
 	//assign resetCounter = 0;
 
-	counter #(WIDTH, 1) cntr (i_clk, i_max, counterValue);
+	counter #(WIDTH, 1) cntr (i_clk, i_max, hitTop_dummy, counterValue);
 
 	always_ff @(posedge i_clk)
 		begin
