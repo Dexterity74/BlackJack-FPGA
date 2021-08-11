@@ -167,6 +167,13 @@ module outputController
 					segmLetter1 = `SEGMENT_R;
 					segmLetter0 = `SEGMENT_T;
 				end
+			else if(gameState == `S_DEAL_DEALER)
+				begin
+					segmLetter3 = `SEGMENT_D;
+					segmLetter2 = `SEGMENT_E;
+					segmLetter1 = `SEGMENT_A;
+					segmLetter0 = `SEGMENT_L;
+				end
 			else if(gameState == `S_RESULT_WIN)
 				begin
 					segmLetter3 = `SEGMENT_OFF;
