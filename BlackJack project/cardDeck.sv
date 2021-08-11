@@ -26,7 +26,7 @@ module cardDeck
     assign MAX_CARD_VALUE = 'd12;
 
     //modules
-    randomNumberGenerator #(4) rng(clk, requestCard, MAX_CARD_VALUE, _rngValue);
+    randomNumberGenerator #(4) rng(clk, MAX_CARD_VALUE, _rngValue);
 
     //determine card value from RNG
     always_comb

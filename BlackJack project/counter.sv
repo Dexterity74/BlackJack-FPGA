@@ -18,7 +18,7 @@ module counter
 	(
 		input	logic	i_clk,	//ticker
 		//input	logic	i_reset,	//hi means reset
-		input	logic 	i_enabled,	//hi means enabled
+		//input	logic 	i_enabled,	//hi means enabled
 		input	logic	[WIDTH - 1 : 0]	i_top,
 
 		output	logic	[WIDTH - 1 : 0] o_value
@@ -37,7 +37,7 @@ module counter
 
 	always_ff @(posedge i_clk) 
 		begin
-			if(i_enabled)
+			if(i_clk)
 				begin
 					if(_hitTop) 
 						_value <= 0; 
