@@ -110,6 +110,7 @@ module blackjackGame
 		&& playerCommand == `COMMAND_HIT 
 		&& (gameState == `S_DEAL_PLAYER || gameState == `S_PLAYER_CHOICE));
 	assign dealerRequestDrawCard = (isDealersTurn 
+		&& dealButtonPushed
 		&& dealerCommand == `COMMAND_HIT 
 		&& (gameState == `S_DEAL_DEALER || gameState == `S_DRAW_TO_17));
 

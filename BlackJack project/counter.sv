@@ -17,7 +17,7 @@ module counter
 	#(parameter WIDTH = 16, parameter INCREMENT = 1)
 	(
 		input	logic	i_clk,	//ticker
-		//input	logic	i_reset,	//hi means reset
+		input	logic	i_reset,	//hi means reset
 		//input	logic 	i_enabled,	//hi means enabled
 		input	logic	[WIDTH - 1 : 0]	i_top,
 
@@ -26,28 +26,35 @@ module counter
 	);
 
 	logic [WIDTH - 1 : 0] _value;
+	logic hitTop;
 
 	initial 
 	begin
 		_value = 'd0;
 	end
 
-	logic hitTop;
-
-	assign hitTop = _value > i_top;
-
 	always_ff @(posedge i_clk) 
+	begin
+		if(i_reset)
 		begin
-			if(i_clk)
-				begin
-					if(hitTop) 
-						_value <= 0; 
-					else
-						_value <= _value + INCREMENT;//increment counter
-				end
-			else
-				_value <= _value;
+			hitTop = 0;
+			_value = 0;
 		end
+		else
+		begin
+			if(i_top == _value)
+			begin
+				hitTop = 1;
+				_value = _value; //hold hi until reset
+			end
+			else
+			begin
+				hitTop = 0;
+				_value = _value + 1;
+			end
+
+		end
+	end
 
 	assign o_value  = _value;
 	assign o_hitTop = hitTop;

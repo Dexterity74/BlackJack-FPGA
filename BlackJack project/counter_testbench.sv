@@ -2,7 +2,7 @@ module counter_testbench();
 	logic clk, reset, enabled, hitTop;
 	logic [31:0] top, value;
 
-counter dut(clk, reset, enabled, top, hitTop, value);
+counter #(32) dut (clk, hitTop, top, hitTop, value);
 
 //generate clock
 always

@@ -20,18 +20,32 @@ module userInput
 		output 	`gameCommand 	o_command
 	);
 
+	//button debouncers
+	logic buttonDelayReady;
+	logic resetButtonTimer;
+	logic [13:0] DELAY_MAX = 'd10000; //~0.5 seconds
+	//logic [13:0] DELAY_MAX = 'd100; //test
+	logic [13:0] delayValue_dummy; //not used
+
+	assign resetButtonTimer = buttonDelayReady 
+		&& (~i_KEY[0] | ~i_KEY[1] | ~i_KEY[2]); //any button pushed
+	
+	counter #(14) buttonDelayCounter(i_clk, resetButtonTimer,
+		DELAY_MAX, buttonDelayReady, delayValue_dummy);
+
 	always_comb
 	begin
 		if(i_turnIndicator)
 		begin
-			if(i_KEY[1] == 0) o_command = `COMMAND_STAND;
-			else if(i_KEY[0] == 0) o_command = `COMMAND_HIT;
+			if(buttonDelayReady && i_KEY[1] == 0) o_command = `COMMAND_STAND;
+			else if(buttonDelayReady && i_KEY[0] == 0) o_command = `COMMAND_HIT;
 			else o_command = `COMMAND_NONE;
 		end
 		else o_command = `COMMAND_NONE;
 	end
 
-	assign o_dealButtonPushed = ~i_KEY[2];
-	assign o_ready = (i_turnIndicator && !(i_KEY[1:0] == 3));//my turn and I pressed a button
+	assign o_dealButtonPushed = buttonDelayReady && (~i_KEY[2]);
+	assign o_ready = (buttonDelayReady && i_turnIndicator && 
+		!(i_KEY[1:0] == 3));//my turn and I pressed a button
 
 endmodule
