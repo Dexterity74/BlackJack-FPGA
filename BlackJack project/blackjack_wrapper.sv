@@ -13,7 +13,7 @@
 module blackjack_wrapper
 	(	
 		input  	logic       	CLOCK_50, // clk
-      	input  	logic [17] 	    SW,		  // reset (limiting to [17] to try and line up input/outputs to blackjackGame.sv)
+      	input  	logic [17: 0] 	    SW,		  // reset (limiting to [17] to try and line up input/outputs to blackjackGame.sv)
 		input 	logic [2: 0] 	KEY,      // hit/stand
 		//output 	logic [17: 0] 	LEDR,     
 		//output 	logic [7: 0] 	LEDG,
@@ -39,7 +39,7 @@ module blackjack_wrapper
 	
 
 
-	outputController output(dealerHandSum, playerHandSum, gamestate, HEX7[0: 6], HEX6[0: 6], HEX5[0: 6], HEX4[0: 6], 
+	outputController oC(dealerHandSum, playerHandSum, gamestate, HEX7[0: 6], HEX6[0: 6], HEX5[0: 6], HEX4[0: 6], 
 							HEX3[0: 6], HEX2[0: 6], HEX1[0: 6], HEX0[0: 6]);
 
 	// Justin: I don't think switch 17 will be used for gameplay at all so
