@@ -55,6 +55,7 @@ module blackjackGame
 	);
 
 	//internal signals
+	logic 	reset;
 	logic 	isPlayersTurn;
 	logic 	playerRequestDrawCard;
 	logic 	dealerRequestDrawCard;
@@ -105,6 +106,9 @@ module blackjackGame
 
 	`card 	nextCard; //to be given to either player or dealer hands
 
+	//internal reset signal
+	assign reset = i_reset || (gameState == `S_RESET);
+
 	//internal signal assignments
 	assign playerRequestDrawCard = (isPlayersTurn 
 		&& playerCommand == `COMMAND_HIT 
@@ -138,13 +142,13 @@ module blackjackGame
 		&& (playerHandSum <= 'd21);
 
 	//hands full of cards
-	handController playerHandController(i_clk, i_reset, 
+	handController playerHandController(i_clk, reset, 
 		playerRequestDrawCard, nextCard, 
 		playerHandSum, playerCardCount,
 		playerHand0, playerHand1, playerHand2, playerHand3, playerHand4);
 		
 	//hands full of cards
-	handController dealerHandController(i_clk, i_reset, 
+	handController dealerHandController(i_clk, reset, 
 		dealerRequestDrawCard, nextCard, 
 		dealerHandSum, dealerCardCount, dealerHand0,
 		dealerHand1, dealerHand2, dealerHand3, dealerHand4);
