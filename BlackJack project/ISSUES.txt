@@ -3,4 +3,6 @@ ACE logic
 pause at end of game
 
 player not getting any initial cards on deal on Board.
+(maybe this isn't so bad)
 
+Pressing "STAND" does not change Display message to STAND or DEALER
