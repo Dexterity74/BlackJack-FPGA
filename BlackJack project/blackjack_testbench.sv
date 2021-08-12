@@ -23,7 +23,7 @@ module blackjack_testbench
     //device inputs
     logic clk;
     logic reset;
-    logic [2:0] KEY;
+    logic [3:0] KEY;
 
     //device outputs
     `hand playerHandSum;
