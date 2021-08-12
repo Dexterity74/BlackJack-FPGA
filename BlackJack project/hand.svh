@@ -17,4 +17,5 @@
 */
 
 `define hand logic [4:0]
+`define HAND_WIDTH 5
 //typedef logic [4 : 0] hand;
