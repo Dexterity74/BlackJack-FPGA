@@ -67,7 +67,13 @@ module handController
         else if(i_addNewCard)
         begin
             //set new card value and retain old values
-            if(cardIndex == 0) o_card0 = i_newCard;
+            if(cardIndex == 0) 
+                begin
+                    if(i_newCard == 'd1)
+                        o_card0 = `ACE_CARD_11;
+                    else
+                        o_card0 = i_newCard;
+                end
             else    o_card0 = o_card0;
             if(cardIndex == 1) o_card1 = i_newCard;
             else    o_card1 = o_card1;

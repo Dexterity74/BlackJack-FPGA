@@ -11,7 +11,7 @@
 
 //tunable variables
 `define COUNTER_WIDTH 'd32
-`define BOUND_DELAY 22500000 //
+`define BOUND_DELAY 21000000 //
 
 module userInput
 	(
