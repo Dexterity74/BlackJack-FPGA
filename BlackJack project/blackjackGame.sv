@@ -227,7 +227,13 @@ module blackjackGame
 		endcase
 
 	//assign output signals
-	assign o_dealerHandSum = dealerHandSum;
+	assign o_dealerHandSum = (gameState == `S_DRAW_TO_17 ||
+							  gameState == `S_CHECK_DEALER_BUST ||
+							  gameState == `S_CHECK_DEALER_5CC ||
+							  gameState == `S_COMPARE_HANDS ||
+							  gameState == `S_RESULT_LOSE ||
+							  gameState == `S_RESULT_TIE ||
+							  gameState == `S_RESULT_WIN) ? dealerHandSum : dealerHand0;
 	assign o_playerHandSum = playerHandSum;
 	assign o_whoseTurnIsItAnyway = turnTracker;
 	assign o_gameState = gameState;
