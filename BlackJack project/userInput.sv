@@ -8,8 +8,10 @@
 	note that i_KEYS are high when not pushed and low when they are pushed.
 */
 `include "gameCommand.svh"
-`define COUNTER_WIDTH 'd20
-`define BOUND_DELAY 'd1048576 //'d10000 for production
+
+//tunable variables
+`define COUNTER_WIDTH 'd32
+`define BOUND_DELAY 25000000 //
 
 module userInput
 	(
@@ -36,10 +38,10 @@ module userInput
 
 	always_comb
 	begin
-		if(i_turnIndicator)
+		if(i_turnIndicator && buttonDelayReady)
 		begin
-			if(buttonDelayReady && i_KEY[1] == 0) o_command = `COMMAND_STAND;
-			else if(buttonDelayReady && i_KEY[0] == 0) o_command = `COMMAND_HIT;
+			if(i_KEY[1] == 0) o_command = `COMMAND_STAND;
+			else if(i_KEY[0] == 0) o_command = `COMMAND_HIT;
 			else o_command = `COMMAND_NONE;
 		end
 		else o_command = `COMMAND_NONE;
@@ -47,6 +49,6 @@ module userInput
 
 	assign o_dealButtonPushed = buttonDelayReady && (~i_KEY[2]);
 	assign o_ready = (buttonDelayReady && i_turnIndicator && 
-		!(i_KEY[1:0] == 3));//my turn and I pressed a button
+		(i_KEY[1:0] != 3));//my turn and I pressed a button
 
 endmodule
