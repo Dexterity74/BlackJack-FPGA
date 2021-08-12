@@ -6,7 +6,7 @@
 
 // WHEN WE CREATE THE WRAPPER, REFER TO HEX LOGIC AS HEX3[0:6], NOT HEX3[6:0]    
 
-module sevenSegmentDecoder(input  logic [5:0] data,
+module sevenSegmentDecoder(input  logic [6:0] data,
                 	       output logic [6:0] segments);
 
   	always_comb

@@ -50,7 +50,7 @@ module counter
 			else
 			begin
 				hitTop = 0;
-				_value = _value + 1;
+				_value = _value + 1'b1;
 			end
 
 		end

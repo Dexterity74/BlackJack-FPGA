@@ -73,7 +73,7 @@ module handController
             else    o_card3 = o_card3;
             if(cardIndex == 4) o_card4 = i_newCard;
             else    o_card4 = o_card4;
-            cardIndex = cardIndex + 1; //++index
+            cardIndex = cardIndex + 1'b1; //++index
             handSum = handSum + i_newCard;//sum += new card value
         end
         else //retain values

@@ -42,10 +42,10 @@ module cardDeck
                     'd13:       dealtCard = 3;
                     'd14:       dealtCard = 5;
                     'd15:       dealtCard = 7;
-                    default:    dealtCard = _rngValue + 1; //0-9 -> 1-10
+                    default:    dealtCard = _rngValue + 1'b1; //0-9 -> 1-10
                 endcase 
             end
-        else    dealtCard = -1; //invalid card amount
+        else    dealtCard = 'b1111; //invalid card amount
     end
 
 endmodule

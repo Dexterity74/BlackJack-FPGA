@@ -46,7 +46,7 @@
 `define SEGMENT_X 6'h21
 `define SEGMENT_Y 6'h22
 `define SEGMENT_Z 6'h23
-`define SEGMENT_OFF 6'h7F
+`define SEGMENT_OFF 6'h3F
 
 //`define FLASH_GREEN 8'hFF;
 //`define FLASH_RED  18'h3FFFF;
@@ -72,16 +72,17 @@ module outputController
 		output logic [6: 0]    hex0   // hex7-6 is player_hand display
 	);
 
-	logic [5:0] playerHand7;
-	logic [5:0] playerHand6;
+	//hand values must be able to reach 2^6 (>32)
+	logic [6:0] playerHand7;
+	logic [6:0] playerHand6;
 
-	logic [5:0] dealerHand5;
-	logic [5:0] dealerHand4;
+	logic [6:0] dealerHand5;
+	logic [6:0] dealerHand4;
 
-	logic [5:0] segmLetter3;
-	logic [5:0] segmLetter2;
-	logic [5:0] segmLetter1;
-	logic [5:0] segmLetter0;
+	logic [6:0] segmLetter3;
+	logic [6:0] segmLetter2;
+	logic [6:0] segmLetter1;
+	logic [6:0] segmLetter0;
 
 	logic [6:0] playerValue7;
 	logic [6:0] playerValue6;
