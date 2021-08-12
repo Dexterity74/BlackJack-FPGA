@@ -8,6 +8,8 @@
     //5-card Charlie rules
 */
 
+`define ACE_CARD_11 4'd11
+
 `include "card.svh"
 `include "hand.svh"
 
@@ -35,7 +37,9 @@ module handController
     );
 
     `hand handSum;
+    `hand handSumAceTest;
     logic [2:0] cardIndex;
+    
 
     initial 
     begin //or just pulse i_reset
@@ -74,7 +78,23 @@ module handController
             if(cardIndex == 4) o_card4 = i_newCard;
             else    o_card4 = o_card4;
             cardIndex = cardIndex + 1'b1; //++index
-            handSum = handSum + i_newCard;//sum += new card value
+
+            // Ace card logic
+            // if the new card draw is 1, check if 11 added 
+            // to the hand will bust the player
+            //      if it doesn't bust, add 11 to the hand
+            //      if it does bust, add 1 to the hand
+            if(i_newCard == 'd1) 
+                begin
+                    handSumAceTest = handSum;
+                    handSumAceTest = handSumAceTest + `ACE_CARD_11;
+                    if(handSumAceTest <= 'd21)
+                        handSum = handSum + `ACE_CARD_11;
+                    else
+                        handSum = handSum + i_newCard;
+                end
+            else
+                handSum = handSum + i_newCard;//sum += new card value
         end
         else //retain values
         begin
