@@ -196,6 +196,20 @@ module outputController
 					segmLetter1 = `SEGMENT_I;
 					segmLetter0 = `SEGMENT_E;
 				end
+			else if(gameState == `S_RESULT_BUST)
+				begin
+					segmLetter3 = `SEGMENT_B;
+					segmLetter2 = `SEGMENT_U;
+					segmLetter1 = `SEGMENT_S;
+					segmLetter0 = `SEGMENT_T;
+				end
+			else if (gameState == `S_RESULT_BLJK)
+				begin
+					segmLetter3 = `SEGMENT_B;
+					segmLetter2 = `SEGMENT_L;
+					segmLetter1 = `SEGMENT_J;
+					segmLetter0 = `SEGMENT_K;
+				end
 			else
 				begin
 					segmLetter3 = `SEGMENT_P;

@@ -24,6 +24,8 @@
 `define	S_RESULT_LOSE	'b01110			//0x0E
 `define S_CHECK_PLAYER_5CC 'b01111		//0x0F
 `define S_CHECK_DEALER_5CC 'b10000		//0x10
+`define S_RESULT_BUST   'b10001         //0x11
+`define S_RESULT_BLJK   'b10010         //0x12
 
 // typedef enum logic [4:0] 
 // {

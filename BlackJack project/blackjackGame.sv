@@ -176,9 +176,9 @@ module blackjackGame
 							    	else				   					nextstate = `S_DEAL_PLAYER;
 			`S_DEAL_PLAYER:       if(playerCardCount < 'd2) 				nextstate = `S_DEAL_PLAYER;
 							     	else                   					nextstate = `S_CHECK_PLAYER_BJ;
-			`S_CHECK_PLAYER_BJ:   if(playerHasBlackjack)    				nextstate = `S_RESULT_WIN;
+			`S_CHECK_PLAYER_BJ:   if(playerHasBlackjack)    				nextstate = `S_RESULT_BLJK;
 							     	else				   					nextstate = `S_CHECK_PLAYER_BUST;
-			`S_CHECK_PLAYER_BUST: if(playerBusted)          				nextstate = `S_RESULT_LOSE;
+			`S_CHECK_PLAYER_BUST: if(playerBusted)          				nextstate = `S_RESULT_BUST;
 								 	else                   					nextstate = `S_CHECK_PLAYER_5CC;
 		    `S_CHECK_PLAYER_5CC:  if(playerHasCharlie)      				nextstate = `S_RESULT_WIN;
 									else                   					nextstate = `S_PLAYER_CHOICE;
@@ -201,6 +201,10 @@ module blackjackGame
 									else									nextstate = `S_RESULT_TIE;
 			`S_RESULT_WIN:		  if(reset == 'b1)						 	nextstate = `S_RESET;
 									else									nextstate = `S_RESULT_WIN;
+			`S_RESULT_BUST:       if(reset == 'b1)                          nextstate = `S_RESET;
+									else                                    nextstate = `S_RESULT_BUST;
+			`S_RESULT_BLJK:       if(reset == 'b1)							nextstate = `S_RESET;
+									else                                    nextstate = `S_RESULT_BLJK;
 			default:														nextstate = `S_RESET;
 		endcase
 
