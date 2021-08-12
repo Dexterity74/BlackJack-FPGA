@@ -139,9 +139,9 @@ module outputController
 			if(dealerHand <= 5'd9) 
 				begin
 					dealerHand5 = 5'd0;
-					dealerHand4 = dealerHand;
+					dealerHand4 = {1'b0, dealerHand};
 				end
-			else if(dealerHand <= 5'd20)
+			else if(dealerHand <= 5'd19)
 				begin
 					//make left 7-seg 1 and right 7-seg playerHand - 10
 					dealerHand5 = 5'd1;
