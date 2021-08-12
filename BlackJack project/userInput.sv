@@ -29,7 +29,7 @@ module userInput
 	logic [`COUNTER_WIDTH - 1:0] delayValue_dummy; //not used
 
 	assign resetButtonTimer = buttonDelayReady 
-		&& (~i_KEY[0] | ~i_KEY[1] | ~i_KEY[2]); //any button pushed
+		&& (~i_KEY[0] || ~i_KEY[1] || ~i_KEY[2]); //any button pushed
 	
 	counter #(`COUNTER_WIDTH) buttonDelayCounter(i_clk, resetButtonTimer,
 		DELAY_MAX, buttonDelayReady, delayValue_dummy);
