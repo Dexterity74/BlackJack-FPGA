@@ -84,7 +84,6 @@ module outputController
 	logic [5:0] segmLetter0;
 
 	logic [5:0] temp;
-	logic [5:0] temp2;
 
 	logic [6:0] playerValue7;
 	logic [6:0] playerValue6;
@@ -151,15 +150,13 @@ module outputController
 				begin
 					//make left 7-seg 1 and right 7-seg playerHand - 10
 					dealerHand5 = 5'd1;
-					temp2 = {1'b0, dealerHand} - 5'd10;
-					dealerHand4 = temp2;
+					dealerHand4 = {1'b0, dealerHand} - 5'd10;
 				end
 			else
 				begin
 					//make left 7-seg 2 and right 7-seg playerHand - 20
 					dealerHand5 = 5'd2;	
-					temp2 = {1'b0, dealerHand} - 5'd20;
-					dealerHand4 = temp2;	
+					dealerHand4 = {1'b0, dealerHand} - 5'd20;	
 				end
 		end
 
@@ -233,6 +230,5 @@ module outputController
 endmodule
 
 
-//TODO - 7-seg connections
 //TODO - VGA connections
 //TODO - LCD connections
