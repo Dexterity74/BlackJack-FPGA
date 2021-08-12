@@ -1,3 +1,6 @@
 ACE logic
 
 pause at end of game
+
+player not getting any initial cards on deal on Board.
+
