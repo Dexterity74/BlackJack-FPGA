@@ -166,7 +166,8 @@ module outputController
 					segmLetter1 = `SEGMENT_R;
 					segmLetter0 = `SEGMENT_T;
 				end
-			else if(gameState == `S_DEAL_DEALER)
+			else if(gameState == `S_DEAL_DEALER
+				|| gameState == `S_DRAW_TO_17)
 				begin
 					segmLetter3 = `SEGMENT_D;
 					segmLetter2 = `SEGMENT_E;
