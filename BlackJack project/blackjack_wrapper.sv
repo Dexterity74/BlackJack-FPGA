@@ -31,7 +31,8 @@ module blackjack_wrapper
 	`hand	playerHandSum; //sum
 	`gameState gameState, nextstate;
 	`turn turnTracker;
-
+	
+	//all unused pins should be driven low (off)
 	assign LEDR = 0;
 	assign LEDG = 0;
 
@@ -45,6 +46,5 @@ module blackjack_wrapper
 	// Justin: I don't think switch 17 will be used for gameplay at all so
 	//		   it would make good for a reset switch
 
-	//all unused pins should be driven low (off)
 
 endmodule
