@@ -15,7 +15,7 @@ module userInput
 	(
 		input	logic			i_clk,	//unused for now, but can be used to debounce buttons
 		input 	logic			i_turnIndicator,
-		input 	logic	[2 : 0]	i_KEY,
+		input 	logic	[3 : 0]	i_KEY,
 
 		output 	logic 			o_dealButtonPushed, //pushed the button to deal a card (different from 'hit')
 		output 	logic			o_ready,

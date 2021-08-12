@@ -14,7 +14,7 @@ module blackjack_wrapper
 	(	
 		input  	logic       	CLOCK_50, // clk
       	input  	logic [17: 0] 	SW,		  // reset (limiting to [17] to try and line up input/outputs to blackjackGame.sv)
-		input 	logic [2: 0] 	KEY,      // hit/stand
+		input 	logic [3 : 0] 	KEY,      // hit/stand
 		output 	logic [17: 0] 	LEDR,     
 		output 	logic [8: 0] 	LEDG,
 		output 	logic [0: 6]	HEX0,

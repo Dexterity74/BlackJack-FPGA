@@ -45,7 +45,7 @@ module blackjackGame
 	(
 		input  	logic			i_clk,
 		input 	logic			i_reset,
-		input 	logic [2 : 0]	i_keyInput,
+		input 	logic [3 : 0]	i_keyInput,
 
 		//TODO - output other hand info as well for more detailed readout (each card)
 		output 	`hand			o_playerHandSum,	
