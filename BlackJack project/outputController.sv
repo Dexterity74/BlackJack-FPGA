@@ -48,6 +48,11 @@
 `define SEGMENT_Z 6'h23
 `define SEGMENT_OFF 6'h3F
 
+`define RED_LIGHTS_OFF 18'd0
+`define GREEN_LIGHTS_OFF 8'd0
+`define RED_LIGHTS_ON  18'b111111111111111111
+`define GREEN_LIGHTS_ON 8'b11111111
+
 //`define FLASH_GREEN 8'hFF;
 //`define FLASH_RED  18'h3FFFF;
 
@@ -60,8 +65,6 @@ module outputController
 
 
 		//outputs - will depend on what we are hooking onto
-		//output logic [17: 0]   redLights,
-		//output logic [7: 0]    greenLights,
 		output logic [6: 0]    hex7, 
 		output logic [6: 0]    hex6,
 		output logic [6: 0]    hex5,  
@@ -69,7 +72,9 @@ module outputController
 		output logic [6: 0]    hex3,
 		output logic [6: 0]    hex2,   // hex5-4 is dealer_hand display
 		output logic [6: 0]    hex1,
-		output logic [6: 0]    hex0   // hex7-6 is player_hand display
+		output logic [6: 0]    hex0,   // hex7-6 is player_hand display
+		output logic [17: 0]   redLights,
+		output logic [7: 0]    greenLights
 	);
 
 	//hand values must be able to reach 2^6 (>32)
@@ -95,8 +100,14 @@ module outputController
 	logic [6:0] segmValue1;
 	logic [6:0] segmValue0;
 
-	//logic [17:0] redLightStatus;
-	//logic [7:0]  greenLightStatus;
+	logic [17:0] redLightStatus;
+	logic [7:0]  greenLightStatus;
+
+	initial 
+		begin
+			redLightStatus = `RED_LIGHTS_OFF;
+			greenLightStatus = `GREEN_LIGHTS_OFF;
+		end
 	
 	sevenSegmentDecoder segDisplayPlayer7(playerHand7, playerValue7);
 	sevenSegmentDecoder segDisplayPlayer6(playerHand6, playerValue6);
@@ -165,6 +176,8 @@ module outputController
 					segmLetter2 = `SEGMENT_T;
 					segmLetter1 = `SEGMENT_R;
 					segmLetter0 = `SEGMENT_T;
+					redLightStatus = `RED_LIGHTS_OFF;
+					greenLightStatus = `GREEN_LIGHTS_OFF;
 				end
 			else if(gameState == `S_DEAL_DEALER
 				|| gameState == `S_DRAW_TO_17)
@@ -173,6 +186,8 @@ module outputController
 					segmLetter2 = `SEGMENT_E;
 					segmLetter1 = `SEGMENT_A;
 					segmLetter0 = `SEGMENT_L;
+					redLightStatus = `RED_LIGHTS_OFF;
+					greenLightStatus = `GREEN_LIGHTS_OFF;
 				end
 			else if(gameState == `S_RESULT_WIN)
 				begin
@@ -180,7 +195,8 @@ module outputController
 					segmLetter2 = `SEGMENT_W;
 					segmLetter1 = `SEGMENT_I;
 					segmLetter0 = `SEGMENT_N;
-
+					greenLightStatus = `GREEN_LIGHTS_ON;
+					redLightStatus = `RED_LIGHTS_OFF;
 				end
 		    else if(gameState == `S_RESULT_LOSE)
 				begin
@@ -188,6 +204,8 @@ module outputController
 					segmLetter2 = `SEGMENT_O;
 					segmLetter1 = `SEGMENT_S;
 					segmLetter0 = `SEGMENT_E;
+					redLightStatus = `RED_LIGHTS_ON;
+					greenLightStatus = `GREEN_LIGHTS_OFF;
 				end
 			else if(gameState == `S_RESULT_TIE)
 				begin
@@ -195,6 +213,8 @@ module outputController
 					segmLetter2 = `SEGMENT_T;
 					segmLetter1 = `SEGMENT_I;
 					segmLetter0 = `SEGMENT_E;
+					greenLightStatus = `GREEN_LIGHTS_ON;
+					redLightStatus = `RED_LIGHTS_ON;
 				end
 			else if(gameState == `S_RESULT_BUST)
 				begin
@@ -202,6 +222,8 @@ module outputController
 					segmLetter2 = `SEGMENT_U;
 					segmLetter1 = `SEGMENT_S;
 					segmLetter0 = `SEGMENT_T;
+					greenLightStatus = `GREEN_LIGHTS_OFF;
+					redLightStatus = `RED_LIGHTS_ON;
 				end
 			else if (gameState == `S_RESULT_BLJK)
 				begin
@@ -209,6 +231,8 @@ module outputController
 					segmLetter2 = `SEGMENT_L;
 					segmLetter1 = `SEGMENT_J;
 					segmLetter0 = `SEGMENT_K;
+					redLightStatus = `RED_LIGHTS_OFF;
+					greenLightStatus = `GREEN_LIGHTS_ON;
 				end
 			else
 				begin
@@ -216,6 +240,8 @@ module outputController
 					segmLetter2 = `SEGMENT_L;
 					segmLetter1 = `SEGMENT_A;
 					segmLetter0 = `SEGMENT_Y;
+					redLightStatus = `RED_LIGHTS_OFF;
+					greenLightStatus = `GREEN_LIGHTS_OFF;
 				end
 		end
 
@@ -235,8 +261,9 @@ module outputController
 	assign hex1 = segmValue1;
 	assign hex0 = segmValue0;
 
-	//assign redLights = redLightStatus
-	//assign greenLights = greenLightStatus
+	// lights
+	assign redLights = redLightStatus;
+	assign greenLights = greenLightStatus;
 	
 endmodule
 
