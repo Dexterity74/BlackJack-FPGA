@@ -37,8 +37,6 @@ module cardDeck
                     'd10:       dealtCard = 'd10;//jack
                     'd11:       dealtCard = 'd10;//queen
                     'd12:       dealtCard = 'd10;//king
-
-                    //somehow i'm getting 'e' back from the counter, so janky stuff to fake it
                     'd13:       dealtCard = 3;
                     'd14:       dealtCard = 5;
                     'd15:       dealtCard = 7;
