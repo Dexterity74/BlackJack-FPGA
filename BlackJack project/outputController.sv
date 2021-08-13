@@ -50,8 +50,10 @@
 
 `define RED_LIGHTS_OFF 18'd0
 `define GREEN_LIGHTS_OFF 8'd0
-`define RED_LIGHTS_ON  18'b111111111111111111
-`define GREEN_LIGHTS_ON 8'b11111111
+`define RED_LIGHTS_ON  18'h2FFFF
+`define GREEN_LIGHTS_ON 8'hFF
+
+`define DIVIDE_CLK 24'h989680
 
 //`define FLASH_GREEN 8'hFF;
 //`define FLASH_RED  18'h3FFFF;
@@ -59,6 +61,7 @@
 module outputController
 	(
 		//inputs
+		input logic      clk,
 		input `hand      dealerHand,
 		input `hand      playerHand,
 		input `gameState gameState,
@@ -103,6 +106,9 @@ module outputController
 	logic [17:0] redLightStatus;
 	logic [7:0]  greenLightStatus;
 
+	integer       counter_value;
+	logic         divided_clk;
+
 	initial 
 		begin
 			redLightStatus = `RED_LIGHTS_OFF;
@@ -117,6 +123,22 @@ module outputController
 	sevenSegmentDecoder segDisplayMessage2(segmLetter2, segmValue2);
 	sevenSegmentDecoder segDisplayMessage1(segmLetter1, segmValue1);
 	sevenSegmentDecoder segDisplayMessage0(segmLetter0, segmValue0);
+
+	always @(posedge clk)
+		begin
+			if(counter_value == `DIVIDE_CLK)
+				counter_value = 0;
+			else
+				counter_value <= counter_value + 1;
+		end
+
+	always @(posedge clk)
+		begin
+			if(counter_value == `DIVIDE_CLK)
+				divided_clk <= ~divided_clk;
+			else
+				divided_clk <= divided_clk;
+		end
 
 	// always block for player
 	always @(playerHand)
@@ -168,7 +190,7 @@ module outputController
 		end
 
 	// always block for message box
-	always @(gameState)
+	always @(posedge clk)
 		begin
 			if(gameState == `S_RESET)
 				begin
@@ -180,7 +202,7 @@ module outputController
 					greenLightStatus = `GREEN_LIGHTS_OFF;
 				end
 			else if(gameState == `S_DEAL_DEALER
-				|| gameState == `S_DRAW_TO_17)
+				 || gameState == `S_DRAW_TO_17)
 				begin
 					segmLetter3 = `SEGMENT_D;
 					segmLetter2 = `SEGMENT_E;
@@ -189,7 +211,7 @@ module outputController
 					redLightStatus = `RED_LIGHTS_OFF;
 					greenLightStatus = `GREEN_LIGHTS_OFF;
 				end
-			else if(gameState == `S_RESULT_WIN)
+			else if(gameState == `S_RESULT_WIN && divided_clk)
 				begin
 					segmLetter3 = `SEGMENT_OFF;
 					segmLetter2 = `SEGMENT_W;
@@ -198,7 +220,7 @@ module outputController
 					greenLightStatus = `GREEN_LIGHTS_ON;
 					redLightStatus = `RED_LIGHTS_OFF;
 				end
-		    else if(gameState == `S_RESULT_LOSE)
+		    else if(gameState == `S_RESULT_LOSE && divided_clk)
 				begin
 					segmLetter3 = `SEGMENT_L;
 					segmLetter2 = `SEGMENT_O;
@@ -207,7 +229,7 @@ module outputController
 					redLightStatus = `RED_LIGHTS_ON;
 					greenLightStatus = `GREEN_LIGHTS_OFF;
 				end
-			else if(gameState == `S_RESULT_TIE)
+			else if(gameState == `S_RESULT_TIE && divided_clk)
 				begin
 					segmLetter3 = `SEGMENT_OFF;
 					segmLetter2 = `SEGMENT_T;
@@ -216,7 +238,7 @@ module outputController
 					greenLightStatus = `GREEN_LIGHTS_ON;
 					redLightStatus = `RED_LIGHTS_ON;
 				end
-			else if(gameState == `S_RESULT_BUST)
+			else if(gameState == `S_RESULT_BUST && divided_clk)
 				begin
 					segmLetter3 = `SEGMENT_B;
 					segmLetter2 = `SEGMENT_U;
@@ -225,7 +247,7 @@ module outputController
 					greenLightStatus = `GREEN_LIGHTS_OFF;
 					redLightStatus = `RED_LIGHTS_ON;
 				end
-			else if (gameState == `S_RESULT_BLJK)
+			else if(gameState == `S_RESULT_BLJK && divided_clk)
 				begin
 					segmLetter3 = `SEGMENT_B;
 					segmLetter2 = `SEGMENT_L;
@@ -233,6 +255,51 @@ module outputController
 					segmLetter0 = `SEGMENT_K;
 					redLightStatus = `RED_LIGHTS_OFF;
 					greenLightStatus = `GREEN_LIGHTS_ON;
+				end
+			else if(gameState == `S_RESULT_WIN && ~divided_clk)
+				begin
+					segmLetter3 = `SEGMENT_OFF;
+					segmLetter2 = `SEGMENT_OFF;
+					segmLetter1 = `SEGMENT_OFF;
+					segmLetter0 = `SEGMENT_OFF;
+					redLightStatus = `RED_LIGHTS_OFF;
+					greenLightStatus = `GREEN_LIGHTS_OFF;
+				end
+		    else if(gameState == `S_RESULT_LOSE && ~divided_clk)
+				begin
+					segmLetter3 = `SEGMENT_OFF;
+					segmLetter2 = `SEGMENT_OFF;
+					segmLetter1 = `SEGMENT_OFF;
+					segmLetter0 = `SEGMENT_OFF;
+					redLightStatus = `RED_LIGHTS_OFF;
+					greenLightStatus = `GREEN_LIGHTS_OFF;
+				end
+			else if(gameState == `S_RESULT_TIE && ~divided_clk)
+				begin
+					segmLetter3 = `SEGMENT_OFF;
+					segmLetter2 = `SEGMENT_OFF;
+					segmLetter1 = `SEGMENT_OFF;
+					segmLetter0 = `SEGMENT_OFF;
+					redLightStatus = `RED_LIGHTS_OFF;
+					greenLightStatus = `GREEN_LIGHTS_OFF;
+				end
+			else if(gameState == `S_RESULT_BUST && ~divided_clk)
+				begin
+					segmLetter3 = `SEGMENT_OFF;
+					segmLetter2 = `SEGMENT_OFF;
+					segmLetter1 = `SEGMENT_OFF;
+					segmLetter0 = `SEGMENT_OFF;
+					redLightStatus = `RED_LIGHTS_OFF;
+					greenLightStatus = `GREEN_LIGHTS_OFF;
+				end
+			else if(gameState == `S_RESULT_BLJK && ~divided_clk)
+				begin
+					segmLetter3 = `SEGMENT_OFF;
+					segmLetter2 = `SEGMENT_OFF;
+					segmLetter1 = `SEGMENT_OFF;
+					segmLetter0 = `SEGMENT_OFF;
+					redLightStatus = `RED_LIGHTS_OFF;
+					greenLightStatus = `GREEN_LIGHTS_OFF;
 				end
 			else
 				begin

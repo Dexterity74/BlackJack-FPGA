@@ -7,8 +7,8 @@
 */
 
 `define gameState logic [4:0]
-`define	S_RESET 'b00000					//0x00
-`define	S_DEAL_DEALER 'b00001			//0x01
+`define	S_RESET 'b00000					//0x00 
+`define	S_DEAL_DEALER 'b00001			//0x01 
 `define	S_CHECK_DEALER_BJ 'b00010		//0x02
 `define	S_DEALERS_TURN  'b00011			//0x03
 `define	S_CHECK_DEALER_BUST  'b000100	//0x04

@@ -40,7 +40,7 @@ module blackjack_wrapper
 	blackjackGame theGame(CLOCK_50, SW[0], {KEY[2], KEY[1], KEY[0]}, 
 						  playerHandSum, dealerHandSum, gameState, turnTracker); 
 	
-	outputController oC(dealerHandSum, playerHandSum, gameState, HEX7[0: 6], HEX6[0: 6], HEX5[0: 6], HEX4[0: 6], 
+	outputController oC(CLOCK_50, dealerHandSum, playerHandSum, gameState, HEX7[0: 6], HEX6[0: 6], HEX5[0: 6], HEX4[0: 6], 
 							HEX3[0: 6], HEX2[0: 6], HEX1[0: 6], HEX0[0: 6], LEDR[17: 0], LEDG[7: 0]);
 
 endmodule
